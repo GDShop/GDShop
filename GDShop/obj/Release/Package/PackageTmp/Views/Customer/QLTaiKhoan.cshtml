@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "QLTaiKhoan";
+    Layout = "~/Views/Layout/IndexLayout.cshtml";
+}
+<style>
+    .col-sm-3 {
+        display: none;
+    }
+
+    .recommended_items {
+        display: none;
+    }
+
+</style>
+<section id="do_action">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Quản Lý Tài Khoản</li>
+            </ol>
+        </div>
+        <div class="col-sm-5 clearfix" style="width:50%;">
+            <div class="bill-to">
+                <p>Thông tin tài khoản</p>
+                <hr />
+                @using (Html.BeginForm())
+                {
+                    <div class="form-one" style="width:80%;">
+                        <span id="errorTK" style="color:red; font-style:italic;">@ViewBag.thongbao</span><br/>
+                        <span>Họ Tên</span>
+                        <input id="txtHoTen" name="txtHoTen" type="text" placeholder="Họ Tên" value="@ViewBag.taikhoan.tenkh">
+                        <span>Email</span>
+                        <input id="txtEmail" name="txtEmail" type="email" placeholder="Email" value="@ViewBag.taikhoan.email">
+                        <span>Số Điện Thoại</span>
+                        <input id="txtSdt" name="txtSDT" type="number" placeholder="Số Điện Thoại" value="@ViewBag.taikhoan.dienthoai">
+                        <span>Địa Chỉ</span>
+                        <input id="txtDiaChi" name="txtDiaChi" type="text" placeholder="Địa chỉ" value="@ViewBag.taikhoan.diachikh">
+                        <input style="width:30%; margin:auto;" type="submit" id="btnSubmit" class="btn btn-default add-to-cart" value="Sửa" />
+                    </div>
+                    
+                }
+            </div>
+
+        </div>
+        <div class="col-sm-5 clearfix" style="width:50%; float:right;">
+            <div class="bill-to" >
+                <p>Thay Đổi Mật Khẩu</p>
+                <hr />
+                @using (Html.BeginForm("DoiMatKhau","Customer"))
+                {
+                    <div class="form-two" style="width:80%;">
+                        <span id="errorMK" style="color:red; font-style:italic;">@ViewBag.thongbao1</span><br />
+                        <input id="txtMatKhau" name="txtMatKhau" type="password" placeholder="Mật Khẩu Mới" value="">
+                        <input id="txtMatKhau1" name="txtMatKhau1" type="password" placeholder="Nhập Lại Mật Khẩu Mới" value="">
+                        <input style="width:30%; margin:auto;" type="submit" id="btnSubmit123" class="btn btn-default add-to-cart" value="Sửa" />
+                    </div>
+
+                }
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<section id="cart_items">
+    <div class="container">
+        <div class="step-one">
+            <h2 class="heading">Danh Sách Đơn Hàng Đã Đặt</h2>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Mã Hóa Đơn</td>
+                        <td class="description">Ngày Đặt</td>
+                        <td class="price">Tổng Tiền</td>
+                        <td class="quantity">Tình Trạng</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.listDDH)
+                    {
+                        <tr>
+                            <td class="cart_product">
+                                <p>@item.id</p>
+                            </td>
+                            <td class="cart_description">
+                                <p>@item.ngaydathang</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>@string.Format("{0:0,0}", int.Parse(@item.tongtien.ToString())) VND</p>
+                            </td>
+                            <td class="cart_total">
+                                <p style="font-size: 20px;" class="cart_total_price">@Html.Action("TimTTHDTheoID", "BaoMatratCao", new { id = @item.tinhtrang })</p>
+                            </td>
+                            <td class="cart_total">
+                                <a href="@Url.Action("ListCTDDH","DonDatHang", new { id = item.id})" class="cart_quantity_delete"><i class="fa fa-bars"></i> Xem Chi Tiết</a>
+                                
+                            </td>
+                            </tr>
+                    }
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section> <!--/#cart_items-->
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $('#btnSubmit').click(function () {
+    var i = 0;
+
+    if ($('#txtHoTen').val() == "" || $('#txtEmail').val() == "" || $('#txtSDT').val() == ""
+        || $('#txtDiaChi').val() == "") {
+            $('#errorTK').text("*Không được để trống.");
+        i++;
+    }
+        else
+            $('#errorTK').text("");
+    
+    if (i != 0) {
+        return false;
+    }
+    return true;
+    });
+    $('#btnSubmit123').click(function () {
+        var i = 0;
+        if ($('#txtMatKhau').val() == "" || $('#txtMatKhau').val() == null) {
+            $('#errorMK').text("*Không được để trống.");
+            i++;
+        }
+        else if ($('#txtMatKhau').val() != $('#txtMatKhau1').val()) {
+            $('#errorMK').text("Mật khẩu nhập lại sai.");
+            i++;
+        }
+        else
+            $('#errorMK').text("");
+        if (i != 0) {
+            return false;
+        }
+        return true;
+    });
+</script>
+
+

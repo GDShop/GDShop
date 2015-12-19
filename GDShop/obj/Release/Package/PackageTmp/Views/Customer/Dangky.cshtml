@@ -1,0 +1,129 @@
+﻿@model GDShop.GDWebservice.Customer
+
+@{
+    Layout = "~/Views/Layout/IndexLayout.cshtml";
+    ViewBag.Title = "Đăng Ký";
+}
+
+
+
+<style>
+    .col-sm-3 {
+        display: none;
+    }
+    .recommended_items {
+        display:none;
+    }
+    .col-sm-9 {
+        width: 100%;
+    }
+    .col-sm-5 .signup-form{
+        margin-bottom: 40%;
+        margin-top: 20%;
+    }
+    .col-sm-5 .login-form{
+        margin-bottom: 40%;
+        margin-top: 20%;
+    }
+</style>
+<div class="col-sm-5">
+    <div class="signup-form">
+        
+        @using (Html.BeginForm())
+            {
+                <h2>Đăng Ký Tài Khoản</h2>
+                <hr />
+                <span style="color:red; font-style:italic;">@ViewBag.checkDK</span>
+                <span id="erTK"></span>
+                <input type="text" placeholder="Tài Khoản" id="taikhoan" name="taikhoan" />
+                <span id="erMK"></span>
+                <input type="password" placeholder="Mật Khẩu" id="matkhau" name="matkhau" />
+                <input type="password" placeholder="Nhập Lại Mật Khẩu" id="matkhau1" name="matkhau1" />
+                <span id="erHT"></span>
+                <input type="text" placeholder="Họ Tên" id="tenkh" name="tenkh" />
+                <button id="btnSubmit" type="submit" class="btn btn-default">Đăng Ký</button>
+           }
+    </div>
+</div>
+<div class="col-sm-1">
+    <h2 class="or">Hoặc</h2>
+</div>
+<div class="col-sm-5">
+    <div class="login-form">
+        
+        @using (Html.BeginForm("Dangnhap", "Customer"))
+        {
+
+        <!--login form-->
+            <h2>Đăng Nhập Tài Khoản</h2>
+            <hr />
+            <span style="color:red; font-style:italic;">@ViewBag.checkDangNhap</span>
+            <span id="erTKDN"></span>
+            <input type="text" placeholder="Tài khoản" id="txtTaiKhoan" name="txtTaiKhoan"/>
+            <span id="erMKDN"></span>
+            <input type="password" placeholder="Mật khẩu" id="txtMatKhau" name="txtMatKhau" />
+            <span>
+                <input type="checkbox" class="checkbox">
+                Lưu đăng nhập
+            </span>
+            <button type="submit" id="btnSubmitDN" class="btn btn-default">Đăng Nhập</button>
+        <!--/login form-->
+        }
+    </div>
+</div>
+<div class="clearfix"></div>
+<script>
+    $('#btnSubmit').click(function () {
+        var i = 0;
+        
+        if ($('#taikhoan').val() == "") {
+            $('#erTK').text("*Tài khoản không được để trống.");
+            i++;
+        }
+        else
+            $('#erTK').text("");
+        if ($('#matkhau').val() == "") {
+            $('#erMK').text("*Mật khẩu không được để trống.");
+            i++;
+        }
+        else
+            $('#erMK').text("");
+        if ($('#tenkh').val() == "") {
+            $('#erHT').text("*Họ tên không được để trống.");
+            i++;
+        }
+        else
+            $('#erHT').text("");
+        if ($('#matkhau').val() != $('#matkhau1').val()) {
+            $('#erMK').text("Mật khẩu nhập lại sai.");
+            i++;
+        }
+        else
+            $('#errorMK').text("");
+        if (i != 0) {
+            return false;
+        }
+        return true;
+    });
+    $('#btnSubmitDN').click(function () {
+        var i = 0;
+        
+        if ($('#txtTaiKhoan').val() == "") {
+            $('#erTKDN').text("*Tài khoản không được để trống.");
+            i++;
+        }
+        else
+            $('#erTKDN').text("");
+        if ($('#txtMatKhau').val() == "") {
+            $('#erMKDN').text("*Mật khẩu không được để trống.");
+            i++;
+        }
+        else
+            $('#erMKDN').text("");
+        
+        if (i != 0) {
+            return false;
+        }
+        return true;
+    });
+</script>

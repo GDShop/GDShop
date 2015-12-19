@@ -1,0 +1,882 @@
+﻿
+@{
+    ViewBag.Title = "ThongTin";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+                <div class="user-img-div">
+                    <img src="~/Content/Admin/img/user.jpg" class="img-circle" />
+
+                </div>
+
+            </li>
+            <li>
+                <a> <strong> Quản Lý </strong></a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","BaoMatRatCao")"><i class="fa fa-dashboard "></i>Sản Phẩm</a>
+            </li>
+            <li>
+                <a class="active-menu" href="@Url.Action("ThongTin","BaoMatRatCao", new { ten = "", diachi = "", sdt = "", i = 0, id = 0 })"><i class="fa fa-align-left"></i>Thông Tin</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhachHang","BaoMatRatCao")"><i class="fa fa-users"></i>Khách Hàng</a>
+            </li>
+            <li>
+                <a id="nhanvien" href="@Url.Action("NhanVien","BaoMatRatCao")"><i class="fa fa-users"></i>Nhân Viên</a>
+            </li>
+            <li>
+                <a href="@Url.Action("DonDathang","BaoMatRatCao")"><i class="fa fa-calendar-check-o"></i>Đơn Đặt Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("HoaDonBan","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn</a>
+            </li>
+            <li>
+                <a href="@Url.Action("GiaoHang","BaoMatRatCao")"><i class="fa fa-truck"></i>Giao Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("HoaDonNhap","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn Nhập Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhoHang","BaoMatRatCao")"><i class="fa fa-server"></i>Kho Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ThongKe","BaoMatRatCao")"><i class="fa fa-bar-chart"></i>Thống Kê</a>
+            </li>
+
+
+        </ul>
+    </div>
+
+</nav>
+
+<div id="page-wrapper" class="page-wrapper-cls">
+    <div id="page-inner">
+        
+            <div class="row">
+                <div class="col-md-12" style="display:inline;">
+                    @using (Html.BeginForm("Restart", "BaoMatRatCao"))
+                    {
+                        <h1 class="page-head-line">Thông Tin Sản Phẩm<button type="submit" class="page-head-line" style="float:right; background: #ffffff;border: none;"><i class="fa fa-refresh"></i></button></h1>
+                    }
+                </div>
+            </div>
+            <div class="panel-body">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#home" data-toggle="tab">Loại Sản Phẩm</a>
+                    </li>
+                    <li class="">
+                        <a href="#profile" data-toggle="tab">Nhà Cung Cấp</a>
+                    </li>
+                    <li class="">
+                        <a href="#messages" data-toggle="tab">Chất Liệu</a>
+                    </li>
+                    <li class="">
+                        <a href="#settings" data-toggle="tab">Thương Hiệu</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane fade active in" id="home">
+                        <div class="row" style="margin-top: 20px;">
+                            <!--    Loai  -->
+                            <div class="col-md-6" >
+                                <!--   Kitchen Sink -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Loại Sản Phẩm
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Tên Loại</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in ViewBag.T)
+                                                    {
+                                                    <tr>
+                                                        <td>@item.id</td>
+                                                        <td>@item.tenloai</td>
+                                                        <td><a href="@Url.Action("SuaLoai1","BaoMatRatCao", new { id = @item.id })" class=" cart_quantity_delete"><i class="fa fa-bars"></i></a></td>
+                                                    </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End  Kitchen Sink -->
+                            </div>
+                            <div class="col-md-6">
+                                <!--   Kitchen Sink -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Sửa Loại Sản Phẩm
+                                    </div>
+                                    <div class="panel-body">
+                                        <span id="thongbaoloai">@ViewBag.thongbaosualoai</span>
+                                        @using (Html.BeginForm("SuaLoai", "BaoMatRatCao", new { id = @ViewBag.idloai }))
+                                        {
+                                        <div class="table-responsive">
+                                            <span>ID: </span>@ViewBag.idloai<br />
+                                            <span>Tên Loại: </span>
+                                            <input type="text" class="form-control" name="txtTen" id="loai" value="@ViewBag.tenloai" />
+                                        </div>
+                                        <hr />
+                                        <button type="submit" id="btnSubmitSuaLoai">Lưu</button>
+                                        }
+
+                                    </div>
+
+                                </div>
+                                <!-- End  Kitchen Sink -->
+                            </div>
+                            <div class="col-md-6" style="float:right;">
+                                <!--   Kitchen Sink -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Thêm Loại Sản Phẩm
+                                    </div>
+                                    <div class="panel-body">
+                                        <span id="thongbaoloai1">@ViewBag.thongbaothemloai</span>
+                                        @using (Html.BeginForm("ThemLoai", "BaoMatRatCao"))
+                                        {
+                                        <div class="table-responsive">
+                                            <span>Tên Loại</span>
+                                            <input type="text" class="form-control" name="txtTen" id="loai1" value="" />
+                                        </div>
+                                        <hr />
+                                        <button type="submit" id="btnSubmitThemLoai">Lưu</button>
+                                        }
+
+                                    </div>
+                                </div>
+                                <!-- End  Kitchen Sink -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile">
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-6">
+                                <!--    Striped Rows Table  -->
+                                <div class="panel panel-default">
+
+                                    <div class="panel-heading">
+                                        Nhà Cung Cấp
+                                    </div>
+
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Tên</th>
+                                                        <th>Địa Chỉ</th>
+                                                        <th>Số Địa Thoại</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in ViewBag.N)
+                                                    {
+                                                    <tr>
+                                                        <td>@item.id</td>
+                                                        <td>@item.ten</td>
+                                                        <td>@item.diachi</td>
+                                                        <td>@item.sdt</td>
+                                                        <td><a href="@Url.Action("SuaNhaCungCap1","BaoMatRatCao", new { id = @item.id })" class=" cart_quantity_delete"><i class="fa fa-bars"></i></a></td>
+                                                    </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--  End  Striped Rows Table  -->
+                            </div>
+                            <div class="col-md-6">
+                                <!--   Kitchen Sink -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Sửa Nhà Cung Cấp
+                                    </div>
+                                    <div class="panel-body">
+                                        <span id="thongbaoncc">@ViewBag.thongbaosuancc</span>
+                                        @using (Html.BeginForm("SuaNhaCungCap", "BaoMatRatCao", new { id = @ViewBag.idncc }))
+                                        {
+                                        <div class="table-responsive">
+                                            <span>ID: </span>@ViewBag.idncc<br />
+                                            <span>Tên</span>
+                                            <input type="text" name="txtTen" id="ncc" class="form-control" value="@ViewBag.tenncc" /><br />
+                                            <span>Địa Chỉ</span>
+                                            <input type="text" name="txtDiaChi" id="ncc" class="form-control" value="@ViewBag.dcncc" /><br />
+                                            <span>Số Điện Thoại</span>
+                                            <input type="text" name="txtSdt" id="ncc" class="form-control" value="@ViewBag.sdtncc" /><br />
+                                        </div>
+                                        <hr />
+                                        <button type="submit" id="btnSubmitSuaNCC">Lưu</button>
+                                        }
+
+                                    </div>
+                                </div>
+                                <!-- End  Thương Hiệu Sink -->
+                            </div>
+                            <div class="col-md-6" style="float:right;">
+                                <!--   Kitchen Sink -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Thêm Nhà Cung Cấp
+                                    </div>
+                                    <div class="panel-body">
+                                        <span id="thongbaoncc1">@ViewBag.thongbaothemncc</span>
+                                        @using (Html.BeginForm("ThemNhaCungCap", "BaoMatRatCao"))
+                                        {
+                                        <div class="table-responsive">
+                                            <span>Tên Loại</span>
+                                            <input type="text" name="txtTen" id="ncc1" class="form-control" value="" /><br />
+                                            <span>Địa Chỉ</span>
+                                            <input type="text" name="txtDiaChi" id="ncc1" class="form-control" value="" /><br />
+                                            <span>Số Điện Thoại</span>
+                                            <input type="text" name="txtSdt" id="ncc1" class="form-control" value="" /><br />
+                                        </div>
+                                        <hr />
+                                        <button type="submit" id="btnSubmitThemNCC">Lưu</button>
+                                        }
+
+                                    </div>
+                                </div>
+                                <!-- End  Kitchen Sink -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="messages">
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-6">
+                                <!--   Bang Loại SP  -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Chất Liệu Sản Phẩm
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Tên Chất Liệu</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in ViewBag.Q)
+                                                    {
+                                                    <tr>
+                                                        <td>@item.id</td>
+                                                        <td>@item.tenchatlieu</td>
+                                                        <td><a href="@Url.Action("SuaChatLieu1","BaoMatRatCao", new { id = @item.id})" class=" cart_quantity_delete"><i class="fa fa-bars"></i></a></td>
+                                                    </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Bang Loại SP  -->
+                            </div>
+                            <div class="col-md-6">
+                                <!--   Kitchen Sink -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Chất Liệu Sản Phẩm
+                                    </div>
+                                    <div class="panel-body">
+                                        <span id="thongbaocl">@ViewBag.thongbaosuacl</span>
+                                        @using (Html.BeginForm("SuaChatLieu", "BaoMatRatCao", new { id = @ViewBag.idchatlieu }))
+                                        {
+                                        <div class="table-responsive">
+                                            <span>ID: </span>@ViewBag.idchatlieu<br />
+                                            <span>Tên Chất Liệu: </span>
+                                            <input type="text" name="txtTen" class="form-control" id="cl" value="@ViewBag.tenchatlieu" />
+                                        </div>
+                                        <hr />
+                                        <button type="submit" id="btnSubmitSuaCL">Lưu</button>
+                                        }
+
+                                    </div>
+                                </div>
+                                <!-- End  Kitchen Sink -->
+                            </div>
+                            <div class="col-md-6" style="float:right;">
+                                <!--   Kitchen Sink -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Chất Liệu Sản Phẩm
+                                    </div>
+                                    <div class="panel-body">
+                                        <span id="thongbaocl1">@ViewBag.thongbaothemcl</span>
+                                        @using (Html.BeginForm("ThemChatLieu", "BaoMatRatCao"))
+                                        {
+                                        <div class="table-responsive">
+                                            <span>Tên Chất Liệu</span>
+                                            <input type="text" name="txtTen" class="form-control" id="cl1" value="" />
+                                        </div>
+                                        <hr />
+                                        <button type="submit" id="btnSubmitThemCL">Lưu</button>
+                                        }
+
+                                    </div>
+                                </div>
+                                <!-- End  Kitchen Sink -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="settings">
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-6">
+                                <!--    Hover Rows  -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Thương Hiệu
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Tên</th>
+                                                        <th>Địa Chỉ</th>
+                                                        <th>Số Điện Thoại</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in ViewBag.B)
+                                                    {
+                                                    <tr>
+                                                        <td>@item.id</td>
+                                                        <td>@item.ten</td>
+                                                        <td>@item.diachi</td>
+                                                        <td>@item.sdt</td>
+                                                        <td><a href="@Url.Action("SuaThuongHieu1","BaoMatRatCao", new { id = @item.id})" class=" cart_quantity_delete"><i class="fa fa-bars"></i></a></td>
+                                                    </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End  Hover Rows  -->
+                            </div>
+                            <div class="col-md-6">
+                                <!--   Kitchen Sink -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Sửa Thương Hiệu Sản Phẩm
+                                    </div>
+                                    <div class="panel-body">
+                                        <span id="thongbaoth">@ViewBag.thongbaosuath</span>
+                                        @using (Html.BeginForm("SuaThuongHieu", "BaoMatRatCao", new { id = @ViewBag.idth }))
+                                        {
+                                        <div class="table-responsive">
+                                            <span>ID: </span>@ViewBag.idth<br />
+                                            <span>Tên</span>
+                                            <input type="text" name="txtTen" id="th" class="form-control" value="@ViewBag.tenth" /><br />
+                                            <span>Địa Chỉ</span>
+                                            <input type="text" name="txtDiaChi" id="th" class="form-control" value="@ViewBag.dcth" /><br />
+                                            <span>Số Điện Thoại</span>
+                                            <input type="text" name="txtSdt" id="th" class="form-control" value="@ViewBag.sdtth" /><br />
+                                        </div>
+                                        <hr />
+                                        <button type="submit" id="btnSubmitSuaTH">Lưu</button>
+                                        }
+
+                                    </div>
+                                </div>
+                                <!-- End  Thương Hiệu Sink -->
+                            </div>
+                            <div class="col-md-6" style="float:right;">
+                                <!--   Kitchen Sink -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Thêm Thương Hiệu Sản Phẩm
+                                    </div>
+                                    <div class="panel-body">
+                                        <span id="thongbaoth1">@ViewBag.thongbaothemth</span>
+                                        @using (Html.BeginForm("ThemThuongHieu", "BaoMatRatCao"))
+                                        {
+                                        <div class="table-responsive">
+                                            <span>Tên Loại</span>
+                                            <input type="text" name="txtTen" id="th1" value="" class="form-control" /><br />
+                                            <span>Địa Chỉ</span>
+                                            <input type="text" name="txtDiaChi" id="th1" value="" class="form-control" /><br />
+                                            <span>Số Điện Thoại</span>
+                                            <input type="text" name="txtSdt" id="th1" value="" class="form-control" /><br />
+                                        </div>
+                                        <hr />
+                                        <button type="submit" id="btnSubmitThemTH">Lưu</button>
+                                        }
+
+                                    </div>
+                                </div>
+                                <!-- End  Kitchen Sink -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+@*<div id="page-wrapper" class="page-wrapper-cls">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12" style="display:inline;">
+                @using (Html.BeginForm("Restart", "BaoMatRatCao"))
+                {
+                    <h1 class="page-head-line">Thông Tin Sản Phẩm<button type="submit" class="page-head-line" style="float:right; background: #ffffff;border: none;"><i class="fa fa-refresh"></i></button></h1>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <!--    Loai  -->
+            <div class="col-md-6">
+                <!--   Kitchen Sink -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Loại Sản Phẩm
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tên Loại</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.T)
+                                    {
+                                        <tr>
+                                            <td>@item.id</td>
+                                            <td>@item.tenloai</td>
+                                            <td><a href="@Url.Action("SuaLoai1","BaoMatRatCao", new { id = @item.id })" class=" cart_quantity_delete"><i class="fa fa-bars"></i></a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- End  Kitchen Sink -->
+            </div>
+            <div class="col-md-6">
+                <!--   Kitchen Sink -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Sửa Loại Sản Phẩm
+                    </div>
+                    <div class="panel-body">
+                        <span id="thongbaoloai">@ViewBag.thongbaosualoai</span>
+                        @using (Html.BeginForm("SuaLoai", "BaoMatRatCao", new { id = @ViewBag.idloai }))
+                        {
+                            <div class="table-responsive">
+                                <span>ID: </span>@ViewBag.idloai<br />
+                                <span>Tên Loại: </span>
+                                <input type="text" class="form-control" name="txtTen" id="loai" value="@ViewBag.tenloai" />
+                            </div>
+                            <hr />
+                            <button type="submit" id="btnSubmitSuaLoai">Lưu</button>
+                        }
+
+                    </div>
+
+                </div>
+                <!-- End  Kitchen Sink -->
+            </div>
+            <div class="col-md-6" style="float:right;">
+                <!--   Kitchen Sink -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Thêm Loại Sản Phẩm
+                    </div>
+                    <div class="panel-body">
+                        <span id="thongbaoloai1">@ViewBag.thongbaothemloai</span>
+                        @using (Html.BeginForm("ThemLoai", "BaoMatRatCao"))
+                        {
+                            <div class="table-responsive">
+                                <span>Tên Loại</span>
+                                <input type="text" class="form-control" name="txtTen" id="loai1" value="" />
+                            </div>
+                            <hr />
+                            <button type="submit" id="btnSubmitThemLoai">Lưu</button>
+                        }
+
+                    </div>
+                </div>
+                <!-- End  Kitchen Sink -->
+            </div>
+        </div><hr />
+        <div class="row">
+            <div class="col-md-6">
+                <!--    Striped Rows Table  -->
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        Nhà Cung Cấp
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tên</th>
+                                        <th>Địa Chỉ</th>
+                                        <th>Số Địa Thoại</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.N)
+                                    {
+                                        <tr>
+                                            <td>@item.id</td>
+                                            <td>@item.ten</td>
+                                            <td>@item.diachi</td>
+                                            <td>@item.sdt</td>
+                                            <td><a href="@Url.Action("SuaNhaCungCap1","BaoMatRatCao", new { id = @item.id })" class=" cart_quantity_delete"><i class="fa fa-bars"></i></a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--  End  Striped Rows Table  -->
+            </div>
+            <div class="col-md-6">
+                <!--   Kitchen Sink -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Sửa Nhà Cung Cấp
+                    </div>
+                    <div class="panel-body">
+                        <span id="thongbaoncc">@ViewBag.thongbaosuancc</span>
+                        @using (Html.BeginForm("SuaNhaCungCap", "BaoMatRatCao", new { id = @ViewBag.idncc }))
+                        {
+                            <div class="table-responsive">
+                                <span>ID: </span>@ViewBag.idncc<br />
+                                <span>Tên</span>
+                                <input type="text" name="txtTen" id="ncc" class="form-control" value="@ViewBag.tenncc" /><br />
+                                <span>Địa Chỉ</span>
+                                <input type="text" name="txtDiaChi" id="ncc" class="form-control" value="@ViewBag.dcncc" /><br />
+                                <span>Số Điện Thoại</span>
+                                <input type="text" name="txtSdt" id="ncc" class="form-control" value="@ViewBag.sdtncc" /><br />
+                            </div>
+                            <hr />
+                            <button type="submit" id="btnSubmitSuaNCC">Lưu</button>
+                        }
+
+                    </div>
+                </div>
+                <!-- End  Thương Hiệu Sink -->
+            </div>
+            <div class="col-md-6" style="float:right;">
+                <!--   Kitchen Sink -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Thêm Nhà Cung Cấp
+                    </div>
+                    <div class="panel-body">
+                        <span id="thongbaoncc1">@ViewBag.thongbaothemncc</span>
+                        @using (Html.BeginForm("ThemNhaCungCap", "BaoMatRatCao"))
+                        {
+                            <div class="table-responsive">
+                                <span>Tên Loại</span>
+                                <input type="text" name="txtTen" id="ncc1" class="form-control" value="" /><br />
+                                <span>Địa Chỉ</span>
+                                <input type="text" name="txtDiaChi" id="ncc1" class="form-control" value="" /><br />
+                                <span>Số Điện Thoại</span>
+                                <input type="text" name="txtSdt" id="ncc1" class="form-control" value="" /><br />
+                            </div>
+                            <hr />
+                            <button type="submit" id="btnSubmitThemNCC">Lưu</button>
+                        }
+
+                    </div>
+                </div>
+                <!-- End  Kitchen Sink -->
+            </div>
+        </div><hr />
+        <div class="row">
+            <div class="col-md-6">
+                <!--   Bang Loại SP  -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Chất Liệu Sản Phẩm
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tên Chất Liệu</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.Q)
+                                    {
+                                        <tr>
+                                            <td>@item.id</td>
+                                            <td>@item.tenchatlieu</td>
+                                            <td><a href="@Url.Action("SuaChatLieu1","BaoMatRatCao", new { id = @item.id})" class=" cart_quantity_delete"><i class="fa fa-bars"></i></a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bang Loại SP  -->
+            </div>
+            <div class="col-md-6">
+                <!--   Kitchen Sink -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Chất Liệu Sản Phẩm
+                    </div>
+                    <div class="panel-body">
+                        <span id="thongbaocl">@ViewBag.thongbaosuacl</span>
+                        @using (Html.BeginForm("SuaChatLieu", "BaoMatRatCao", new { id = @ViewBag.idchatlieu }))
+                        {
+                            <div class="table-responsive">
+                                <span>ID: </span>@ViewBag.idchatlieu<br />
+                                <span>Tên Chất Liệu: </span>
+                                <input type="text" name="txtTen" class="form-control" id="cl" value="@ViewBag.tenchatlieu" />
+                            </div>
+                            <hr />
+                            <button type="submit" id="btnSubmitSuaCL">Lưu</button>
+                        }
+
+                    </div>
+                </div>
+                <!-- End  Kitchen Sink -->
+            </div>
+            <div class="col-md-6" style="float:right;">
+                <!--   Kitchen Sink -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Chất Liệu Sản Phẩm
+                    </div>
+                    <div class="panel-body">
+                        <span id="thongbaocl1">@ViewBag.thongbaothemcl</span>
+                        @using (Html.BeginForm("ThemChatLieu", "BaoMatRatCao"))
+                        {
+                            <div class="table-responsive">
+                                <span>Tên Chất Liệu</span>
+                                <input type="text" name="txtTen" class="form-control" id="cl1" value="" />
+                            </div>
+                            <hr />
+                            <button type="submit" id="btnSubmitThemCL">Lưu</button>
+                        }
+
+                    </div>
+                </div>
+                <!-- End  Kitchen Sink -->
+            </div>
+        </div><hr />
+        <div class="row">
+            <div class="col-md-6">
+                <!--    Hover Rows  -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Thương Hiệu
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tên</th>
+                                        <th>Địa Chỉ</th>
+                                        <th>Số Điện Thoại</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.B)
+                                    {
+                                        <tr>
+                                            <td>@item.id</td>
+                                            <td>@item.ten</td>
+                                            <td>@item.diachi</td>
+                                            <td>@item.sdt</td>
+                                            <td><a href="@Url.Action("SuaThuongHieu1","BaoMatRatCao", new { id = @item.id})" class=" cart_quantity_delete"><i class="fa fa-bars"></i></a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- End  Hover Rows  -->
+            </div>
+            <div class="col-md-6">
+                <!--   Kitchen Sink -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Sửa Thương Hiệu Sản Phẩm
+                    </div>
+                    <div class="panel-body">
+                        <span id="thongbaoth">@ViewBag.thongbaosuath</span>
+                        @using (Html.BeginForm("SuaThuongHieu", "BaoMatRatCao", new { id = @ViewBag.idth }))
+                        {
+                            <div class="table-responsive">
+                                <span>ID: </span>@ViewBag.idth<br />
+                                <span>Tên</span>
+                                <input type="text" name="txtTen" id="th" class="form-control" value="@ViewBag.tenth" /><br />
+                                <span>Địa Chỉ</span>
+                                <input type="text" name="txtDiaChi" id="th" class="form-control" value="@ViewBag.dcth" /><br />
+                                <span>Số Điện Thoại</span>
+                                <input type="text" name="txtSdt" id="th" class="form-control" value="@ViewBag.sdtth" /><br />
+                            </div>
+                            <hr />
+                            <button type="submit" id="btnSubmitSuaTH">Lưu</button>
+                        }
+
+                    </div>
+                </div>
+                <!-- End  Thương Hiệu Sink -->
+            </div>
+            <div class="col-md-6" style="float:right;">
+                <!--   Kitchen Sink -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Thêm Thương Hiệu Sản Phẩm
+                    </div>
+                    <div class="panel-body">
+                        <span id="thongbaoth1">@ViewBag.thongbaothemth</span>
+                        @using (Html.BeginForm("ThemThuongHieu", "BaoMatRatCao"))
+                        {
+                            <div class="table-responsive">
+                                <span>Tên Loại</span>
+                                <input type="text" name="txtTen" id="th1" value="" class="form-control" /><br />
+                                <span>Địa Chỉ</span>
+                                <input type="text" name="txtDiaChi" id="th1" value="" class="form-control" /><br />
+                                <span>Số Điện Thoại</span>
+                                <input type="text" name="txtSdt" id="th1" value="" class="form-control" /><br />
+                            </div>
+                            <hr />
+                            <button type="submit" id="btnSubmitThemTH">Lưu</button>
+                        }
+
+                    </div>
+                </div>
+                <!-- End  Kitchen Sink -->
+            </div>
+        </div>
+    </div>
+</div>*@
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $('#btnSubmitSuaLoai').click(function () {
+        if ($('#loai').val() == "" || $('#loai').val() == null) {
+            $('#thongbaoloai').text('Không được để trống');
+            return false;
+        }
+        else {
+            $('#thongbaoloai').text('');
+            return true;
+        }
+    });
+    $('#btnSubmitThemLoai').click(function () {
+        if ($('#loai1').val() == "" || $('#loai1').val() == null) {
+            $('#thongbaoloai1').text('Không được để trống');
+            return false;
+        }
+        else {
+            $('#thongbaoloai').text('');
+            return true;
+        }
+    });
+    $('#btnSubmitSuaTH').click(function () {
+        if ($('#th').val() == "" || $('#th').val() == null) {
+            $('#thongbaoth').text('Không được để trống');
+            return false;
+        }
+        else {
+            $('#thongbaoloai').text('');
+            return true;
+        }
+    });
+    $('#btnSubmitThemTH').click(function () {
+        if ($('#th1').val() == "" || $('#th1').val() == null) {
+            $('#thongbaoth1').text('Không được để trống');
+            return false;
+        }
+        else {
+            $('#thongbaoloai').text('');
+            return true;
+        }
+    });
+    $('#btnSubmitSuaCL').click(function () {
+        if ($('#cl').val() == "" || $('#cl').val() == null) {
+            $('#thongbaocl').text('Không được để trống');
+            return false;
+        }
+        else {
+            $('#thongbaoloai').text('');
+            return true;
+        }
+    });
+    $('#btnSubmitThemCL').click(function () {
+        if ($('#cl1').val() == "" || $('#cl1').val() == null) {
+            $('#thongbaocl1').text('Không được để trống');
+            return false;
+        }
+        else {
+            $('#thongbaoloai').text('');
+            return true;
+        }
+    });
+    $('#btnSubmitSuaNCC').click(function () {
+        if ($('#ncc').val() == "" || $('#ncc').val() == null) {
+            $('#thongbaoncc').text('Không được để trống');
+            return false;
+        }
+        else {
+            $('#thongbaoloai').text('');
+            return true;
+        }
+    });
+    $('#btnSubmitThemNCC').click(function () {
+        if ($('#ncc1').val() == "" || $('#ncc1').val() == null) {
+            $('#thongbaoncc1').text('Không được để trống');
+            return false;
+        }
+        else {
+            $('#thongbaoloai').text('');
+            return true;
+        }
+    });
+</script>

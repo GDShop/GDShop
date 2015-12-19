@@ -1,0 +1,154 @@
+﻿@using GDShop.GDWebservice;
+@{
+    ViewBag.Title = "XuLyDDH";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+                <div class="user-img-div">
+                    <img src="~/Content/Admin/img/user.jpg" class="img-circle" />
+
+                </div>
+
+            </li>
+            <li>
+                <a> <strong> Quản Lý </strong></a>
+            </li>
+
+            <li>
+                <a  href="@Url.Action("Index","BaoMatRatCao")"><i class="fa fa-dashboard "></i>Sản Phẩm</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ThongTin","BaoMatRatCao", new { ten = "", diachi = "", sdt = "", i = 0, id = 0 })"><i class="fa fa-align-left"></i>Thông Tin</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhachHang","BaoMatRatCao")"><i class="fa fa-users"></i>Khách Hàng</a>
+            </li>
+            <li>
+                <a id="nhanvien" href="@Url.Action("NhanVien","BaoMatRatCao")"><i class="fa fa-users"></i>Nhân Viên</a>
+            </li>
+            <li>
+                <a class="active-menu" href="@Url.Action("DonDathang","BaoMatRatCao")"><i class="fa fa-calendar-check-o"></i>Đơn Đặt Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("HoaDonBan","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn</a>
+            </li>
+            <li>
+                <a href="@Url.Action("GiaoHang","BaoMatRatCao")"><i class="fa fa-truck"></i>Giao Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("HoaDonNhap","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn Nhập Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhoHang","BaoMatRatCao")"><i class="fa fa-server"></i>Kho Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ThongKe","BaoMatRatCao")"><i class="fa fa-bar-chart"></i>Thống Kê</a>
+            </li>
+
+
+        </ul>
+    </div>
+
+</nav>
+<div id="page-wrapper" class="page-wrapper-cls">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-6" style="width:60%">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Thông Tin Khách Hàng
+                    </div>
+                    <div class="panel-body">
+                        <span>ID Đơn Hàng: @ViewBag.ddh.id</span><br />
+                        <span>Tên Khách Hàng: @ViewBag.kh.tenkh</span><br />
+                        <span>Địa Chỉ: @ViewBag.kh.diachikh</span><br />
+                        <span>Ngày Đặt: @ViewBag.ddh.ngaydathang</span><br />
+                        <span>Tổng Tiền: @ViewBag.ddh.tongtien</span><br />
+                        <span>Tình Trạng Đơn Hàng: @ViewBag.tinhtrang.tentt</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" id="xuly" style="width:30%; float:right; margin-top:100px;">
+                
+                        @using (Html.BeginForm("XuatHoaDon", "BaoMatRatCao",new { id = @ViewBag.ddh.id }))
+                        {
+                            <button class="btn btn-primary btn-lg" type="submit" style="font-family:'Adobe Myungjo Std'" data-toggle="modal" data-target="#myModal">
+                                Xuất Hóa Đơn
+                            </button>
+                        }
+                    
+            </div>
+
+            <div class="col-md-6" style="width:100%">
+                <!--    Striped Rows Table  -->
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        Chi Tiết Đơn Đặt Hàng
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Hình Ảnh</th>
+                                        <th>Tên Sản Phẩm</th>
+                                        <th>Size</th>
+                                        <th>Đơn Giá</th>
+                                        <th>Số Lượng</th>
+                                        <th>Tổng Giá</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.l)
+                                {
+                                        <tr>
+                                            <td class="cart_product">
+                                                <span>@item.idsanpham</span>
+                                            </td>
+                                            <td class="cart_product">
+                                                <a href="@Url.Action("CTSanPham","BaoMatRatCao", new { id = item.idsanpham, thongbao =""})"><img src="~/Images/Product/@(((IEnumerable<Product>)ViewBag.listP).Single(n => n.id == item.idsanpham).id)" /></a>
+                                            </td>
+                                            <td class="cart_description">
+                                                <h4><a href="@Url.Action("CTSanPham","BaoMatRatCao", new { id = item.idsanpham, thongbao =""})">@(((IEnumerable<Product>)ViewBag.listP).Single(n => n.id == item.idsanpham).tensp)</a></h4>
+                                            </td>
+                                            <td class="cart_quantity">
+                                                <div class="cart_quantity_button">
+                                                    <h4>@item.size</h4>
+                                                </div>
+                                            </td>
+                                            <td class="cart_price">
+                                                <p>@String.Format("{0:0,0}", int.Parse(((IEnumerable<Product>)ViewBag.listP).Single(n => n.id == item.idsanpham).dongia.ToString())) VNĐ</p>
+                                            </td>
+                                            <td class="cart_quantity">
+                                                <div class="cart_quantity_button">
+                                                    <h4>@item.soluong</h4>
+                                                </div>
+                                            </td>
+                                            <td class="cart_total">
+                                                <p class="cart_total_price">@String.Format("{0:0,0}", int.Parse((item.soluong * ((IEnumerable<Product>)ViewBag.listP).Single(n => n.id == item.idsanpham).dongia).ToString())) VNĐ</p>
+                                            </td>
+                                        </tr>
+
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--  End  Striped Rows Table  -->
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    if ('@ViewBag.tinhtrang.id' != 1)
+        $('#xuly').hide();
+</script>

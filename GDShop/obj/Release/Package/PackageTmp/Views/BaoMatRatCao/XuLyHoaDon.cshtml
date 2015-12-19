@@ -1,0 +1,102 @@
+﻿@using GDShop.GDWebservice;
+@{
+    ViewBag.Title = "XuLyHoaDon";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+                <div class="user-img-div">
+                    <img src="~/Content/Admin/img/user.jpg" class="img-circle" />
+
+                </div>
+
+            </li>
+            <li>
+                <a> <strong> Quản Lý </strong></a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","BaoMatRatCao")"><i class="fa fa-dashboard "></i>Sản Phẩm</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ThongTin","BaoMatRatCao", new { ten = "", diachi = "", sdt = "", i = 0, id = 0 })"><i class="fa fa-align-left"></i>Thông Tin</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhachHang","BaoMatRatCao")"><i class="fa fa-users"></i>Khách Hàng</a>
+            </li>
+            <li>
+                <a id="nhanvien" href="@Url.Action("NhanVien","BaoMatRatCao")"><i class="fa fa-users"></i>Nhân Viên</a>
+            </li>
+            <li>
+                <a class="active-menu" href="@Url.Action("DonDathang","BaoMatRatCao")"><i class="fa fa-calendar-check-o"></i>Đơn Đặt Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("HoaDonBan","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn</a>
+            </li>
+            <li>
+                <a href="@Url.Action("GiaoHang","BaoMatRatCao")"><i class="fa fa-truck"></i>Giao Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("HoaDonNhap","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn Nhập Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhoHang","BaoMatRatCao")"><i class="fa fa-server"></i>Kho Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ThongKe","BaoMatRatCao")"><i class="fa fa-bar-chart"></i>Thống Kê</a>
+            </li>
+
+
+        </ul>
+    </div>
+
+</nav>
+
+<div id="page-wrapper" class="page-wrapper-cls">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12" style="display:inline;">
+                <h1 class="page-head-line">Chuyển Hàng</h1>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6" style="width:100%;">
+                <!--    Context Classes  -->
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        Chuyển Hóa Đơn Cho Xe Giao Hàng
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <div class="btn-group">
+                                <label>Mã Hóa Đơn: @ViewBag.idhoadon</label>
+                                @using (Html.BeginForm("ChuyenHoaDon", "BaoMatRatCao", new { id = @ViewBag.idhoadon }))
+                                {
+                                    <select id="ChonXe" name="ChonXe" class="form-control">
+                                        @foreach (var item in @Model)
+                                        {
+                                            <option value="@item.id">Biển Số Xe: @item.biensoxe - @Html.Action("TimTenNVTheoID", "BaoMatRatCao", new { id = @item.idnhanvien })</option>
+                                        }
+                                    </select>
+                                    <button type="submit" id="btnSubmit"><i class="fa fa-truck"></i></button>
+                                }
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  end  Context Classes  -->
+            </div>
+        </div>
+
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+

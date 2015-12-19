@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="gdshop" Class="GDDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=tcp:gdshop.database.windows.net,1433;Initial Catalog=gdshop;User ID=zanty@gdshop;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="gdshopConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Brand" Member="Brands">
+    <Type Name="Brand">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="diachi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="sdt" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="image" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Brand_Product" Member="Products" AccessModifier="Internal" ThisKey="id" OtherKey="idbrand" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Type" Member="Types">
+    <Type Name="Type">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tenloai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Type_Product" Member="Products" AccessModifier="Internal" ThisKey="id" OtherKey="idloai" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChucVu" Member="ChucVus">
+    <Type Name="ChucVu">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tenchucvu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="luong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ChucVu_NhanVien" Member="NhanViens" AccessModifier="Internal" ThisKey="id" OtherKey="idchucvu" Type="NhanVien" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Comment" Member="Comments">
+    <Type Name="Comment">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idsanpham" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iduser" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="comment" Member="comment1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Customer_Comment" Member="Customer" AccessModifier="Internal" ThisKey="iduser" OtherKey="id" Type="Customer" IsForeignKey="true" />
+      <Association Name="Product_Comment" Member="Product" AccessModifier="Internal" ThisKey="idsanpham" OtherKey="id" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CTShipCar" Member="CTShipCars">
+    <Type Name="CTShipCar">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idshipcar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idhd" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="HoaDonBan_CTShipCar" Member="HoaDonBan" AccessModifier="Internal" ThisKey="idhd" OtherKey="id" Type="HoaDonBan" IsForeignKey="true" />
+      <Association Name="ShipCar_CTShipCar" Member="ShipCar" AccessModifier="Internal" ThisKey="idshipcar" OtherKey="id" Type="ShipCar" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tenkh" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="diachikh" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="dienthoai" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="taikhoan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="matkhau" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Customer_Comment" Member="Comments" AccessModifier="Internal" ThisKey="id" OtherKey="iduser" Type="Comment" />
+      <Association Name="Customer_DonDatHang" Member="DonDatHangs" AccessModifier="Internal" ThisKey="id" OtherKey="idkhachhang" Type="DonDatHang" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DonDatHang" Member="DonDatHangs">
+    <Type Name="DonDatHang">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ngaydathang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idkhachhang" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tongtien" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tinhtrang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DonDatHang_HoaDonBan" Member="HoaDonBans" AccessModifier="Internal" ThisKey="id" OtherKey="iddondathang" Type="HoaDonBan" />
+      <Association Name="DonDatHang_CTDonDatHang" Member="CTDonDatHangs" AccessModifier="Internal" ThisKey="id" OtherKey="iddonhang" Type="CTDonDatHang" />
+      <Association Name="Customer_DonDatHang" Member="Customer" AccessModifier="Internal" ThisKey="idkhachhang" OtherKey="id" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDonBan" Member="HoaDonBans">
+    <Type Name="HoaDonBan">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idnhanvien" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iddondathang" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ngayxuat" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="idtthoadon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="HoaDonBan_CTShipCar" Member="CTShipCars" AccessModifier="Internal" ThisKey="id" OtherKey="idhd" Type="CTShipCar" />
+      <Association Name="DonDatHang_HoaDonBan" Member="DonDatHang" AccessModifier="Internal" ThisKey="iddondathang" OtherKey="id" Type="DonDatHang" IsForeignKey="true" />
+      <Association Name="NhanVien_HoaDonBan" Member="NhanVien" AccessModifier="Internal" ThisKey="idnhanvien" OtherKey="id" Type="NhanVien" IsForeignKey="true" />
+      <Association Name="TTHoaDon_HoaDonBan" Member="TTHoaDon" AccessModifier="Internal" ThisKey="idtthoadon" OtherKey="id" Type="TTHoaDon" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDonNhap" Member="HoaDonNhaps">
+    <Type Name="HoaDonNhap">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idnhacungcap" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ngaynhap" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="idnhanvien" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tongtien" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="HoaDonNhap_CTHoaDonNhap" Member="CTHoaDonNhaps" AccessModifier="Internal" ThisKey="id" OtherKey="idhoadonnhap" Type="CTHoaDonNhap" />
+      <Association Name="NhaCungCap_HoaDonNhap" Member="NhaCungCap" AccessModifier="Internal" ThisKey="idnhacungcap" OtherKey="id" Type="NhaCungCap" IsForeignKey="true" />
+      <Association Name="NhanVien_HoaDonNhap" Member="NhanVien" AccessModifier="Internal" ThisKey="idnhanvien" OtherKey="id" Type="NhanVien" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhoHang" Member="KhoHangs">
+    <Type Name="KhoHang">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idsanpham" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="size" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Product_KhoHang" Member="Product" AccessModifier="Internal" ThisKey="idsanpham" OtherKey="id" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NhaCungCap" Member="NhaCungCaps">
+    <Type Name="NhaCungCap">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ten" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="diachi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="sdt" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="NhaCungCap_HoaDonNhap" Member="HoaDonNhaps" AccessModifier="Internal" ThisKey="id" OtherKey="idnhacungcap" Type="HoaDonNhap" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NhanVien" Member="NhanViens">
+    <Type Name="NhanVien">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tennv" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="diachi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="sdt" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="idchucvu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="taikhoan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="matkhau" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="NhanVien_HoaDonBan" Member="HoaDonBans" AccessModifier="Internal" ThisKey="id" OtherKey="idnhanvien" Type="HoaDonBan" />
+      <Association Name="NhanVien_HoaDonNhap" Member="HoaDonNhaps" AccessModifier="Internal" ThisKey="id" OtherKey="idnhanvien" Type="HoaDonNhap" />
+      <Association Name="NhanVien_ShipCar" Member="ShipCars" AccessModifier="Internal" ThisKey="id" OtherKey="idnhanvien" Type="ShipCar" />
+      <Association Name="ChucVu_NhanVien" Member="ChucVu" AccessModifier="Internal" ThisKey="idchucvu" OtherKey="id" Type="ChucVu" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tensp" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="dongia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="image1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="image2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="image3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="idloai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idchatlieu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="trangthai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="idbrand" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="taydai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Product_Comment" Member="Comments" AccessModifier="Internal" ThisKey="id" OtherKey="idsanpham" Type="Comment" />
+      <Association Name="Product_KhoHang" Member="KhoHangs" AccessModifier="Internal" ThisKey="id" OtherKey="idsanpham" Type="KhoHang" />
+      <Association Name="Product_CTDonDatHang" Member="CTDonDatHangs" AccessModifier="Internal" ThisKey="id" OtherKey="idsanpham" Type="CTDonDatHang" />
+      <Association Name="Product_CTHoaDonNhap" Member="CTHoaDonNhaps" AccessModifier="Internal" ThisKey="id" OtherKey="idsanpham" Type="CTHoaDonNhap" />
+      <Association Name="Brand_Product" Member="Brand" AccessModifier="Internal" ThisKey="idbrand" OtherKey="id" Type="Brand" IsForeignKey="true" />
+      <Association Name="Type_Product" Member="Type" AccessModifier="Internal" ThisKey="idloai" OtherKey="id" Type="Type" IsForeignKey="true" />
+      <Association Name="Quality_Product" Member="Quality" AccessModifier="Internal" ThisKey="idchatlieu" OtherKey="id" Type="Quality" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Quality" Member="Qualities">
+    <Type Name="Quality">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tenchatlieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Quality_Product" Member="Products" AccessModifier="Internal" ThisKey="id" OtherKey="idchatlieu" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TTHoaDon" Member="TTHoaDons">
+    <Type Name="TTHoaDon">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tentt" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TTHoaDon_HoaDonBan" Member="HoaDonBans" AccessModifier="Internal" ThisKey="id" OtherKey="idtthoadon" Type="HoaDonBan" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CTDonDatHang" Member="CTDonDatHangs">
+    <Type Name="CTDonDatHang">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iddonhang" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idsanpham" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="size" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Association Name="DonDatHang_CTDonDatHang" Member="DonDatHang" AccessModifier="Internal" ThisKey="iddonhang" OtherKey="id" Type="DonDatHang" IsForeignKey="true" />
+      <Association Name="Product_CTDonDatHang" Member="Product" AccessModifier="Internal" ThisKey="idsanpham" OtherKey="id" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShipCar" Member="ShipCars">
+    <Type Name="ShipCar">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="biensoxe" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idnhanvien" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="ShipCar_CTShipCar" Member="CTShipCars" AccessModifier="Internal" ThisKey="id" OtherKey="idshipcar" Type="CTShipCar" />
+      <Association Name="NhanVien_ShipCar" Member="NhanVien" AccessModifier="Internal" ThisKey="idnhanvien" OtherKey="id" Type="NhanVien" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CTHoaDonNhap" Member="CTHoaDonNhaps">
+    <Type Name="CTHoaDonNhap">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idhoadonnhap" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idsanpham" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dongia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="size" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="HoaDonNhap_CTHoaDonNhap" Member="HoaDonNhap" AccessModifier="Internal" ThisKey="idhoadonnhap" OtherKey="id" Type="HoaDonNhap" IsForeignKey="true" />
+      <Association Name="Product_CTHoaDonNhap" Member="Product" AccessModifier="Internal" ThisKey="idsanpham" OtherKey="id" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

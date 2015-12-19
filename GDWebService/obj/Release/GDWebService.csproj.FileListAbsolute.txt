@@ -1,0 +1,10 @@
+E:\Project\Visual Studio\GDShop2\GDShop-2.301\GDShop\GDWebService\bin\GDWebService.dll.config
+E:\Project\Visual Studio\GDShop2\GDShop-2.301\GDShop\GDWebService\bin\GDWebService.dll
+E:\Project\Visual Studio\GDShop2\GDShop-2.301\GDShop\GDWebService\bin\GDWebService.pdb
+E:\Project\Visual Studio\GDShop2\GDShop-2.301\GDShop\GDWebService\bin\EntityFramework.dll
+E:\Project\Visual Studio\GDShop2\GDShop-2.301\GDShop\GDWebService\bin\EntityFramework.SqlServer.dll
+E:\Project\Visual Studio\GDShop2\GDShop-2.301\GDShop\GDWebService\bin\EntityFramework.xml
+E:\Project\Visual Studio\GDShop2\GDShop-2.301\GDShop\GDWebService\bin\EntityFramework.SqlServer.xml
+E:\Project\Visual Studio\GDShop2\GDShop-2.301\GDShop\GDWebService\obj\Release\GDWebService.dll
+E:\Project\Visual Studio\GDShop2\GDShop-2.301\GDShop\GDWebService\obj\Release\GDWebService.pdb
+E:\Project\Visual Studio\GDShop2\GDShop-2.301\GDShop\GDWebService\obj\Release\GDWebService.csprojResolveAssemblyReference.cache

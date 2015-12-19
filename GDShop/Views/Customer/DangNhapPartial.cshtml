@@ -1,0 +1,23 @@
+﻿@using GDShop.GDWebservice;
+
+
+
+<li class="dropdown">
+    <a href="@Url.Action("DangNhapTKPartial", "Customer")" ><i class="fa fa-user"> @ViewBag.tk</i></a>
+    <ul  role="menu" class="sub-menu">
+        <li id="dadn">@Html.ActionLink("Thoát","ThoatTaiKhoan","Customer")</li>
+    </ul>
+</li>
+<script>
+    var a = '@Session["TaiKhoan"]';
+    if('@Session["TaiKhoan"]'==""){
+            $("#dadn").css("display", "none");
+        }
+    else{
+            $("#dadn").css("display", "block");
+        }
+
+</script>
+<style>
+    
+</style>

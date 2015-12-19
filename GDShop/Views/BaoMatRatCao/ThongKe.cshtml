@@ -1,0 +1,149 @@
+﻿@using GDShop.GDWebservice;
+@model List<HoaDonBan>
+@{
+    ViewBag.Title = "ThongKe";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+                <div class="user-img-div">
+                    <img src="~/Content/Admin/img/user.jpg" class="img-circle" />
+
+                </div>
+
+            </li>
+            <li>
+                <a> <strong> Quản Lý </strong></a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","BaoMatRatCao")"><i class="fa fa-dashboard "></i>Sản Phẩm</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ThongTin","BaoMatRatCao", new { ten = "", diachi = "", sdt = "", i = 0, id = 0 })"><i class="fa fa-align-left"></i>Thông Tin</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhachHang","BaoMatRatCao")"><i class="fa fa-users"></i>Khách Hàng</a>
+            </li>
+            <li>
+                <a id="nhanvien" href="@Url.Action("NhanVien","BaoMatRatCao")"><i class="fa fa-users"></i>Nhân Viên</a>
+            </li>
+            <li>
+                <a href="@Url.Action("DonDathang","BaoMatRatCao")"><i class="fa fa-calendar-check-o"></i>Đơn Đặt Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("HoaDonBan","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn</a>
+            </li>
+            <li>
+                <a href="@Url.Action("GiaoHang","BaoMatRatCao")"><i class="fa fa-truck"></i>Giao Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("HoaDonNhap","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn Nhập Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhoHang","BaoMatRatCao")"><i class="fa fa-server"></i>Kho Hàng</a>
+            </li>
+            <li>
+                <a class="active-menu" href="@Url.Action("ThongKe","BaoMatRatCao")"><i class="fa fa-bar-chart"></i>Thống Kê</a>
+            </li>
+
+
+        </ul>
+    </div>
+
+</nav>
+<div id="page-wrapper" class="page-wrapper-cls">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-head-line">Thống Kê</h1>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px; width:100%;">
+            <div style="margin-bottom:20px; width: 60%; ">
+                @* khung thong ke *@
+                @using (Html.BeginForm("ThongKe", "BaoMatRatCao"))
+                {
+                    <div style="display:inline;">
+                        <select style="width: 20%;margin-bottom: 10px;" id="slThang" name="slThang" class="form-control">
+                            @for (int i = 0; i < 13; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    <option value="0">Chọn Tháng</option>
+                                }
+                                else
+                                {
+                                    <option value="@i">Tháng @i</option>
+                                }
+
+                            }
+                        </select>
+                        <select style="width: 20%; margin-bottom: 10px;" id="slNam" name="slNam" class="form-control">
+                            @for (int i = 2010; i < 2020; i++)
+                            {
+                                <option value="@i">Năm @i</option>
+                            }
+                        </select>
+                        <button style="width: 50px;margin-bottom: 10px;" type="submit" id="btnSubmit"><i class="fa fa-chevron-down"></i></button>
+                    </div>
+                }
+            </div>
+            <div style="margin-bottom:20px;width: 100%;">
+                <span class="btn btn-info btn-lg">Tổng Doanh Thu @ViewBag.thang/@ViewBag.nam: </span>
+                <span class="btn btn-success btn-lg">@String.Format("{0:0,0}", int.Parse(@ViewBag.thongke.ToString()))</span>
+                <span class="btn btn-danger btn-lg"> VND</span>
+            </div>
+            <div class="col-md-6" style="width: 100%;">
+                <!--    Striped Rows Table  -->
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        Danh Sách Hóa Đơn
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nhân Viên</th>
+                                        <th>Khách Hàng</th>
+                                        <th>Ngày Xuất</th>
+                                        <th>Tình Trạng</th>
+                                        <th>Tổng Tiền</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.id</td>
+                                            <td>@Html.Action("TimTenNVTheoID", "BaoMatratCao", new { id = @item.idnhanvien })</td>
+                                            <td>@Html.Action("TimTenKHTheoIDDDH", "BaoMatratCao", new { id = @item.iddondathang })</td>
+                                            <td>@item.ngayxuat</td>
+                                            <td>@Html.Action("TimTTHDTheoID", "BaoMatratCao", new { id = @item.idtthoadon })</td>
+                                            <td>@Html.Action("TimTTTheoIDDDH", "BaoMatratCao", new { id = @item.iddondathang })</td>
+                                            <td>
+                                                <a href="@Url.Action("XuLyDDH","BaoMatRatCao", new { id = item.iddondathang})"><i class="fa fa-bars"></i> Xem Chi Tiết</a>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--  End  Striped Rows Table  -->
+            </div>
+        </div>
+
+    </div>
+</div>

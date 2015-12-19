@@ -1,0 +1,21 @@
+﻿@using GDShop.GDWebservice;
+@using GDShop.Controllers;
+@model List<Brand>
+
+@foreach (var item in ViewBag.listBrand)
+{
+    <li><a href="@Url.Action("BrandProduct","Brand", new { @tenloai = @item.ten })"> <span class="pull-right">
+        @Html.Action("CountProduct", "Brand", new { @ten = @item.ten })
+        </span>@item.ten</a></li>
+}
+
+
+
+@*<li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
+<li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
+<li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
+<li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
+<li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
+<li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
+<li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>*@
+

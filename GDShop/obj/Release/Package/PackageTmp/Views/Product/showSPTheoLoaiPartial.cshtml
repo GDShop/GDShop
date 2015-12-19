@@ -1,0 +1,122 @@
+﻿
+@using GDShop.GDWebservice;
+
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="clb">
+        @foreach (Product item in ViewBag.tabCLB)
+        {
+            <div class="col-sm-3">
+                <div class="product-image-wrapper">
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <a href="@Url.Action("DetailProduct","Product", new { @id = item.id })">
+                                <img class="img-responsive zoom-img" src="~/Images/Product/@item.image1" alt=""  /></a>
+                                <h2>@string.Format("{0:0.000}", @item.dongia / 1000) VNĐ</h2>
+                                <p>@item.tensp</p>
+                                @using (Html.BeginForm("AddShoppingCart", "ShoppingCart", new { @MaSP = item.id, @Url = Request.Url.ToString() }))
+                                {
+                                    <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ</button>
+                                }
+</div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="tab-pane fade" id="quocgia">
+        @foreach (Product item in ViewBag.tabDT)
+        {
+            <div class="col-sm-3">
+                <div class="product-image-wrapper">
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <a href="@Url.Action("DetailProduct","Product", new { @id = item.id })">
+                                <img class="img-responsive zoom-img" src="~/Images/Product/@item.image1" alt=""/></a>
+                                <h2>@string.Format("{0:0.000}", @item.dongia / 1000) VNĐ</h2>
+                                <p>@item.tensp</p>
+
+                                @using (Html.BeginForm("AddShoppingCart", "ShoppingCart", new { @MaSP = item.id, @Url = Request.Url.ToString() }))
+                                {
+                                    <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ</button>
+                                }
+</div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="tab-pane fade" id="t90">
+        @foreach (Product item in ViewBag.tabT90)
+        {
+            <div class="col-sm-3">
+                <div class="product-image-wrapper">
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <a href="@Url.Action("DetailProduct","Product", new { @id = item.id })">
+                                <img class="img-responsive zoom-img" src="~/Images/Product/@item.image1" alt="" /></a>
+                                <h2>@string.Format("{0:0.000}", @item.dongia / 1000) VNĐ</h2>
+                                <p>@item.tensp</p>
+                                @using (Html.BeginForm("AddShoppingCart", "ShoppingCart", new { @MaSP = item.id, @Url = Request.Url.ToString() }))
+                                {
+                                    <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ</button>
+                                }
+</div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @*<div class="tab-pane fade" id="thumon">
+        @foreach (Product item in ViewBag.tabTM)
+        {
+            <div class="col-sm-3">
+                <div class="product-image-wrapper">
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <a href="@Url.Action("DetailProduct","Product", new { @id = item.id })"><img class="img-responsive zoom-img" src="~/Images/Product/@item.image1" alt=""  /></a>
+                            <h2>@string.Format("{0:0.000}", @item.dongia / 1000) VNĐ</h2>
+                            <p>@item.tensp</p>
+                            @using (Html.BeginForm("AddShoppingCart", "ShoppingCart", new { @MaSP = item.id, @Url = Request.Url.ToString() }))
+                            {
+                                <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ</button>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>*@
+
+    <div class="tab-pane fade" id="chonu">
+        @foreach (Product item in ViewBag.tabCN)
+        {
+            <div class="col-sm-3">
+                <div class="product-image-wrapper">
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <a href="@Url.Action("DetailProduct","Product", new { @id = item.id })">
+                                <img class="img-responsive zoom-img" src="~/Images/Product/@item.image1" alt="" /></a>
+                                <h2>@string.Format("{0:0.000}", @item.dongia / 1000) VNĐ</h2>
+                                <p>@item.tensp</p>
+
+                                @using (Html.BeginForm("AddShoppingCart", "ShoppingCart", new { @MaSP = item.id, @Url = Request.Url.ToString() }))
+                                {
+                                    <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ</button>
+                                }
+</div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

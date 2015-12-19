@@ -1,0 +1,336 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title</title>
+    <script src="~/Scripts/jquery-1.11.0.min.js"></script>
+    <link href="~/Content/IndexCss/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/IndexCss/prettyPhoto.css" rel="stylesheet" />
+    <link href="~/Content/IndexCss/price-range.css" rel="stylesheet" />
+    <link href="~/Content/IndexCss/animate.css" rel="stylesheet" />
+    <link href="~/Content/IndexCss/main.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/HomeCss/style.css" rel="stylesheet" />
+</head>
+<body>
+    
+    <header id="header">
+        <!--header-->
+        <div class="header_top">
+            <!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li><a href="#"><i class="fa fa-phone"></i> +84 999 999 999</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i> GDShop@gdshop.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icons pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header_top-->
+
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="logo pull-left">
+                            <a href="@Url.Action("Index", "Home")"><img src="~/Images/ImageIndex/home/logo.png" alt="" /></a>
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="shop-menu pull-right">
+                            <ul class="nav navbar-nav">
+                                
+                                @Html.Action("DangNhapPartial","Customer")
+                                <li><a href="@Url.Action("ShoppingCart", "ShoppingCart")"><i class="fa fa-shopping-cart"></i>Giỏ Hàng: @Html.Action("SoSanPham", "ShoppingCart")</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-middle-->
+    
+        
+        <div class="header-bottom">
+            <!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-left">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="@Url.Action("Index", "Home")" class="active"><i class="fa fa-home"></i></a></li>
+                                <li><a href="#">Giới Thiệu</a></li>
+                                <li class="dropdown">
+                                    <a href="#">Sản Phẩm<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="@Url.Action("LoaiProduct1","Type", new { @tenloai = "Câu Lạc Bộ"})">Câu Lạc Bộ</a></li>
+                                        <li><a href="@Url.Action("LoaiProduct1","Type", new { @tenloai = "Đội Tuyển"})">Đội Tuyển Quốc Gia</a></li>
+                                        <li><a href="@Url.Action("LoaiProduct1","Type", new { @tenloai = "T90" })">Đồ Thể Thao T90</a></li>
+                                        <li><a href="#">Đồ Tay Dài</a></li>
+                                        <li><a href="@Url.Action("LoaiProduct1","Type", new { @tenloai = "Cho Nữ" })">Đồ Cho Nữ</a></li>
+                                        <li><a href="@Url.Action("LoaiProduct1","Type", new { @tenloai = "Trẻ Em"})">Đồ Cho Trẻ Em</a></li>
+                                        <li><a href="@Url.Action("LoaiProduct1","Type", new { @tenloai = "Loại Khác"})">Đồ Loại Khác</a></li>
+                                    </ul>
+                                </li>
+                                
+                                
+                                <li><a href="contact-us.html">Liên Hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        @using (Html.BeginForm("TimKiem", "TimKiem"))
+                        {
+                            <div class="search_box pull-right">
+                                <input type="text" name="txtTimKiem" placeholder="Tìm kiếm" />
+                                @*<button type="submit" name="btnSubmit"><i class="fa fa-search"></i></button>*@ 
+                            </div>
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-bottom-->
+    </header><!--/header-->
+    
+    @RenderSection("HeaderSlider", false)
+    <br />
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="left-sidebar">
+                            <h2>Danh Mục Sản Phẩm</h2>
+                            <div class="panel-group category-products" id="accordian">
+                                <!--category-productsr-->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+                                                <span class="badge pull-right"><i class="fa fa-chevron-down"></i></span>
+                                                Câu Lạc Bộ
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="sportswear" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li><a href="@Url.Action("LoaiProduct","Type", new { @tenloai = "Câu Lạc Bộ Ligue 1" })">Ligue 1</a></li>
+                                                <li><a href="@Url.Action("LoaiProduct","Type", new { @tenloai = "Câu Lạc Bộ Premier League" })">Premier League</a></li>
+                                                <li><a href="@Url.Action("LoaiProduct","Type", new { @tenloai = "Câu Lạc Bộ Seria A" })">Seria A</a></li>
+                                                <li><a href="@Url.Action("LoaiProduct","Type", new { @tenloai = "Câu Lạc Bộ Bundes Liga" })">Bundes Liga</a></li>
+                                                <li><a href="@Url.Action("LoaiProduct","Type", new { @tenloai = "Câu Lạc Bộ La Liga" })">La Liga</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordian" href="#mens">
+                                                <span class="badge pull-right"><i class="fa fa-chevron-down"></i></span>
+                                                Đội Tuyển Quốc Gia
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="mens" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li><a href="@Url.Action("LoaiProduct","Type", new { @tenloai = "Đội Tuyển Châu Á" })">Châu Á</a></li>
+                                                <li><a href="@Url.Action("LoaiProduct","Type", new { @tenloai = "Đội Tuyển Châu Âu" })">Châu Âu</a></li>
+                                                <li><a href="@Url.Action("LoaiProduct","Type", new { @tenloai = "Đội Tuyển Châu Phi" })">Châu Phi</a></li>
+                                                <li><a href="@Url.Action("LoaiProduct","Type", new { @tenloai = "Đội Tuyển Châu Mỹ" })">Châu Mỹ</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><a href="#">Tay Dài</a></h4>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><a href="@Url.Action("LoaiProduct","Type", new { @tenloai = "Trẻ Em" })">Trẻ Em</a></h4>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><a href="@Url.Action("LoaiProduct","Type", new { @tenloai = "Cho Nữ" })">Cho Nữ</a></h4>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><a href="@Url.Action("LoaiProduct","Type", new { @tenloai = "T90" })">T90</a></h4>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><a href="@Url.Action("LoaiProduct","Type", new { @tenloai = "Loại Khác" })">Loại Khác</a></h4>
+                                    </div>
+                                </div>
+                                
+                            </div><!--/category-products-->
+
+                            <div class="brands_products">
+                                <!--brands_products-->
+                                <h2>Thương Hiệu</h2>
+                                <div class="brands-name">
+                                    <ul class="nav nav-pills nav-stacked">
+                                        @Html.Action("ThuonghieuPartial","Brand")
+                                        
+                                    </ul>
+                                </div>
+                            </div><!--/brands_products-->
+
+                            @*<div class="price-range">
+                                <!--price-range-->
+                                <h2>Giá</h2>
+                                <div class="well text-center">
+                                    <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
+                                    <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+                                </div>
+                            </div><!--/price-range-->
+
+                            <div class="shipping text-center">
+                                <!--shipping-->
+                                <img src="~/Images/ImageIndex/home/shipping.jpg" alt="" />
+                            </div><!--/shipping-->*@
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9 padding-right">
+                        
+                            @RenderBody()
+
+                        
+                        @RenderSection("TabProduct", false)
+                        @*@Html.Action("RecommenedProductPartial", "Product")*@
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer id="footer">
+            <!--Footer-->
+            
+
+            <div class="footer-widget">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="single-widget">
+                                <h2>Service</h2>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#">Online Help</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Order Status</a></li>
+                                    <li><a href="#">Change Location</a></li>
+                                    <li><a href="#">FAQ’s</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="single-widget">
+                                <h2>Quock Shop</h2>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#">T-Shirt</a></li>
+                                    <li><a href="#">Mens</a></li>
+                                    <li><a href="#">Womens</a></li>
+                                    <li><a href="#">Gift Cards</a></li>
+                                    <li><a href="#">Shoes</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="single-widget">
+                                <h2>Policies</h2>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#">Terms of Use</a></li>
+                                    <li><a href="#">Privecy Policy</a></li>
+                                    <li><a href="#">Refund Policy</a></li>
+                                    <li><a href="#">Billing System</a></li>
+                                    <li><a href="#">Ticket System</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="single-widget">
+                                <h2>About Shopper</h2>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#">Company Information</a></li>
+                                    <li><a href="#">Careers</a></li>
+                                    <li><a href="#">Store Location</a></li>
+                                    <li><a href="#">Affillate Program</a></li>
+                                    <li><a href="#">Copyright</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <div class="single-widget">
+                                <h2>About Shopper</h2>
+                                <form action="#" class="searchform">
+                                    <input type="text" placeholder="Your email address" />
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                                    <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+                        <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
+    
+        <script src="~/Scripts/Indexjs/bootstrap.min.js"></script>
+        <script src="~/Scripts/Indexjs/jquery.scrollUp.min.js"></script>
+        <script src="~/Scripts/Indexjs/price-range.js"></script>
+        <script src="~/Scripts/Indexjs/jquery.prettyPhoto.js"></script>
+        <script src="~/Scripts/Indexjs/main.js"></script>
+</body>
+
+</html>
+

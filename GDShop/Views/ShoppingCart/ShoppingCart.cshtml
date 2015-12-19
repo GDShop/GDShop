@@ -1,0 +1,132 @@
+﻿@using GDShop.Models;
+@model List<ShoppingCart>
+@{
+    ViewBag.Title = "ShoppingCart";
+    Layout = "~/Views/Layout/IndexLayout.cshtml";
+}
+<style>
+    .col-sm-3 {
+        display: none;
+    }
+
+    .recommended_items {
+        display: none;
+    }
+</style>
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="active">Giỏ Hàng</li>
+            </ol>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Hình</td>
+                        <td class="description">Tên Sản Phẩm</td>
+                        <td class="description">Size</td>
+                        <td class="price">Giá</td>
+                        <td class="quantity">Số Lượng</td>
+                        <td class="quantity">Thành Tiền</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model) { 
+                    <tr>
+                        <td class="cart_product">
+                            <a style="width:50px;height:70px;vertical-align: inherit;" href="@Url.Action("DetailProduct","Product", new { @id = item.MaSP })"><img style="width:50px;height:70px;vertical-align: inherit;" class="aaaaa"  src="~/Images/Product/@item.Image" /></a>
+                        </td>
+                        <td class="cart_description">
+                            <h4><a href="@Url.Action("DetailProduct","Product", new { @id = item.MaSP })">@item.TenSP</a></h4>
+                        </td>
+                        @using (Html.BeginForm("UpdateShoppingCart", "ShoppingCart", new { @MaSP = item.MaSP }))
+                        {
+                        <td class="cart_price">
+                            <select id="size" name="size" class="form-control">
+                                <option value="M">M(@Html.Action("TimSLSPTheoIDVaSize", "Product", new { id = @item.MaSP, size = "M" }))</option>
+                                <option value="L">L(@Html.Action("TimSLSPTheoIDVaSize", "Product", new { id = @item.MaSP, size = "L" }))</option>
+                                <option value="XL">XL(@Html.Action("TimSLSPTheoIDVaSize", "Product", new { id = @item.MaSP, size = "XL" }))</option>
+                            </select>
+                        </td>
+                        <td class="cart_price" style="margin: 0;">
+                            <p style="margin: 0;">@string.Format("{0:0.000}", @item.DonGia / 1000) VNĐ</p>
+                        </td>
+                        <td class="cart_quantity">
+                            <div class="cart_quantity_button">
+                                
+                                <button id="cong-@item.MaSP" name="cong-@item.MaSP" style="float:left;" type="submit" class="cart_quantity_up">+</button>
+                                <input class="cart_quantity_input" type="text" id="txtSoluong-@item.MaSP" name="txtSoluong-@item.MaSP" value="@item.SoLuong" autocomplete="off" size="2">
+                                   
+                                <button id="tru-@item.MaSP" name="tru-@item.MaSP" class="cart_quantity_down" type="submit" >-</button>
+                                
+                                
+                            </div>
+                                
+                        </td>
+                        }
+                        <td class="cart_total" >
+                            <p style="margin: 0;" class="cart_total_price">@String.Format("{0:0.000}", @item.TongTien / 1000) VNĐ</p>
+                        </td>
+                        <td class="cart_delete">
+                            @using (Html.BeginForm("DeletecShoppingCart", "ShoppingCart", new { @MaSP = item.MaSP })) { 
+                            <button type="submit" style="padding: 8px 13px; margin-bottom: 45px;" class="btn btn-danger btn-lg" ><i class="fa fa-times"></i></button>
+                            }
+                        </td>
+                    </tr>
+                    
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<section id="do_action">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-sm-6" style="float:right;">
+                <div class="total_area">
+                    <ul>
+                        <li>Số Sản Phẩm<span>@Html.Action("SoSanPham", "ShoppingCart")</span></li>
+                        <li>Tổng Số Lượng<span>@Html.Action("TongSoLuong","ShoppingCart")</span></li>
+                        <li>Tổng Tiền<span>@String.Format("{0:0,0}", int.Parse(@Html.Action("TongTien", "ShoppingCart").ToString())) VNĐ</span></li>
+                    </ul>
+                    
+                       <a href="@Url.Action("ThongTinDatHang","ShoppingCart")"> <input style="margin-left: 40px;" type="submit" class="btn btn-default check_out" value="Đặt Hàng" /></a>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@foreach (var item in Model)
+{
+<script>
+    $('#cong-@item.MaSP').click(function () {
+        var i = parseInt($('#txtSoluong-@item.MaSP').val());
+        i = i + 1;
+        $('#txtSoluong-@item.MaSP').val(i);
+    });
+    $('#tru-@item.MaSP').click(function () {
+        var i = $('#txtSoluong-@item.MaSP').val();
+        i = i - 1;
+        if(i>=0)
+            $('#txtSoluong-@item.MaSP').val(i);
+
+    });
+    @*if(parseInt($('#txtSoluong-@item.MaSP').val()<0){
+        $('#txtSoluong-@item.MaSP').text(0);
+    }*@
+    @*if($('#size').val()=="M" && $('@Html.Action("TimSLSPTheoIDVaSize", "Product", new { id = @item.MaSP, size = "M" })') == 0)
+        $('#txtSoluong-@item.MaSP').text(0);
+    if($('#size').val()=="L" && $('@Html.Action("TimSLSPTheoIDVaSize", "Product", new { id = @item.MaSP, size = "L" })') == 0)
+        $('#txtSoluong-@item.MaSP').text(0);
+    if($('#size').val()=="XL" && $('@Html.Action("TimSLSPTheoIDVaSize", "Product", new { id = @item.MaSP, size = "XL" })') == 0)
+        $('#txtSoluong-@item.MaSP').text(0);*@
+</script>
+}

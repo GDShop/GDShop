@@ -1,0 +1,124 @@
+﻿@using GDShop.GDWebservice;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList<ShipCar>
+@{
+    ViewBag.Title = "GiaoHang";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+                <div class="user-img-div">
+                    <img src="~/Content/Admin/img/user.jpg" class="img-circle" />
+
+                </div>
+
+            </li>
+            <li>
+                <a> <strong> Quản Lý </strong></a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","BaoMatRatCao")"><i class="fa fa-dashboard "></i>Sản Phẩm</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ThongTin","BaoMatRatCao", new { ten = "", diachi = "", sdt = "", i = 0, id = 0 })"><i class="fa fa-align-left"></i>Thông Tin</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhachHang","BaoMatRatCao")"><i class="fa fa-users"></i>Khách Hàng</a>
+            </li>
+            <li>
+                <a id="nhanvien" href="@Url.Action("NhanVien","BaoMatRatCao")"><i class="fa fa-users"></i>Nhân Viên</a>
+            </li>
+            <li>
+                <a  href="@Url.Action("DonDathang","BaoMatRatCao")"><i class="fa fa-calendar-check-o"></i>Đơn Đặt Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("HoaDonBan","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn</a>
+            </li>
+            <li>
+                <a class="active-menu" href="@Url.Action("GiaoHang","BaoMatRatCao")"><i class="fa fa-truck"></i>Giao Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("HoaDonNhap","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn Nhập Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhoHang","BaoMatRatCao")"><i class="fa fa-server"></i>Kho Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ThongKe","BaoMatRatCao")"><i class="fa fa-bar-chart"></i>Thống Kê</a>
+            </li>
+
+
+        </ul>
+    </div>
+
+</nav>
+
+<div id="page-wrapper" class="page-wrapper-cls">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12" style="display:inline;">
+                <h1 class="page-head-line">Quản Lý Giao Hàng</h1>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <a href="@Url.Action("InsertShipCar","BaoMatRatCao")" class="label label-success" style="float:right; font-size:20px; margin-bottom:20px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><i class="fa fa-plus-square-o"></i> Thêm Xe</a>
+
+            <div class="col-md-6" style="width:100%;">
+                <!--    Context Classes  -->
+
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        Hóa Đơn Bán Hàng
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nhân Viên</th>
+                                        <th>Biển Số</th>
+                                        <th>Vị Trí Hiện Tại</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.id</td>
+                                            <td>@Html.Action("TimTenNVTheoID", "BaoMatratCao", new { id = @item.idnhanvien })</td>
+                                            <td>@item.biensoxe</td>
+                                            <td>@item.location</td>
+                                            <td>
+                                                <a href="@Url.Action("ChiTietShipCar","BaoMatRatCao", new { id = item.id})"><i class="fa fa-bars"></i> Xem Chi Tiết</a>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="MenuPage" style="display:inline;">
+                            @Html.PagedListPager(Model, page => Url.Action("GiaoHang", "BaoMatRatCao", new { @page = page }))
+                        </div>
+                    </div>
+                </div>
+                <!--  end  Context Classes  -->
+            </div>
+        </div>
+
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+

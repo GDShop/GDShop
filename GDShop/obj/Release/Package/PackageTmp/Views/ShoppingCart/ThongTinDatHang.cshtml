@@ -1,0 +1,116 @@
+﻿@model GDShop.GDWebservice.Customer
+
+@{
+    ViewBag.Title = "Đặt Hàng";
+    Layout = "~/Views/Layout/IndexLayout.cshtml";
+}
+<style>
+    .col-sm-3 {
+        display: none;
+    }
+
+    .recommended_items {
+        display: none;
+    }
+
+    .col-sm-9 {
+        width: 100%;
+    }
+
+    .col-sm-5 .signup-form {
+        margin-bottom: 40%;
+        margin-top: 20%;
+    }
+
+    .col-sm-5 .login-form {
+        margin-bottom: 40%;
+        margin-top: 20%;
+    }
+</style>
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Đặt Hàng</li>
+            </ol>
+        </div><!--/breadcrums-->
+        <div class="step-one">
+            <h2 class="heading">Điền Thông Tin Khách Hàng</h2>
+        </div>
+        
+        <div class="register-req">
+            <p>Vui lòng điền đầy đủ thông tin khách hàng để tiện cho việc giao chuyển hàng hóa</p>
+        </div><!--/register-req-->
+@using (Html.BeginForm("DatHang", "ShoppingCart"))
+            {
+        <div class="shopper-informations">
+            
+                <div class="col-sm-5 clearfix">
+                    <div class="bill-to">
+                        <p>Thông tin tài khoản</p>
+                        <div class="form-one" style="width:100%">
+                                <input id="txtHoTen" name="txtHoTen" type="text" placeholder="Họ Tên" value="@Model.tenkh">
+                                <input id="txtEmail" name="txtEmail" type="email" placeholder="Email" value="@Model.email">
+                                <input id="txtSdt" name="txtSDT" type="text" placeholder="Số Điện Thoại" value="@Model.dienthoai">
+                                <input id="txtDiaChi" name="txtDiaChi" type="text" placeholder="Địa chỉ" value="@Model.diachikh">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 clearfix">
+                    <div class="order-message">
+                        <p>Đơn Đặt Hàng</p>
+                        <table class="table table-condensed">
+                            <tbody>
+                                @foreach (var item in ViewBag.listSC)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.TenSP
+                                        </td>
+                                        <td>
+                                            @item.SoLuong
+                                        </td>
+                                        <td>
+                                            @item.Size
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <span>Tổng Tiền: @String.Format("{0:0,0}", int.Parse(@Html.Action("TongTien", "ShoppingCart").ToString())) VNĐ</span>
+                </div>
+                    
+            </div>
+            <div class="col-sm-2">
+                
+                    <button class="btn btn-default add-to-cart" type="submit" id="btnDatHang" name="btnDatHang"><i class="fa fa-check"></i> Đặt Hàng Ngay</button>
+                
+            </div>
+           
+        </div>
+}
+        <div class="clearfix"></div>
+        <div class="register-req">
+            <p>Vui lòng điền đầy đủ thông tin khách hàng để tiện cho việc giao chuyển hàng hóa</p>
+        </div><!--/register-req-->
+    </div>
+</section>
+<script>
+    $('#btnSubmit').click(function () {
+        var i = 0;
+
+        if ($('#txtHoTen').val() == "" || $('#txtEmail').val() == "" || $('#txtSDT').val() == ""
+            || $('#txtDiaChi').val() == "") {
+            $('#errorTK').text("*Không được để trống.");
+            i++;
+        }
+        else
+            $('#errorTK').text("");
+        
+        if (i != 0) {
+            return false;
+        }
+        return true;
+    });
+</script>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="559f9c7c-4384-4608-95cc-51fb2c87f7e1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:22778/GDWebService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GDWebService.xsd" MetadataType="Schema" ID="ef57e427-2472-4266-a9e0-26d62c02154b" SourceId="1" SourceUrl="http://localhost:22778/GDWebService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GDWebService.wsdl" MetadataType="Wsdl" ID="8548fcbc-b4c7-4872-adfb-c2336011290a" SourceId="1" SourceUrl="http://localhost:22778/GDWebService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="GDWebService1.wsdl" MetadataType="Wsdl" ID="e8f99e5a-2d7c-4fcb-85e3-4471ff634dca" SourceId="1" SourceUrl="http://localhost:22778/GDWebService.svc?wsdl" />
+    <MetadataFile FileName="GDWebService1.xsd" MetadataType="Schema" ID="d9928c15-34b6-4cdb-be4c-ee176b2002a5" SourceId="1" SourceUrl="http://localhost:22778/GDWebService.svc?xsd=xsd1" />
+    <MetadataFile FileName="GDWebService2.xsd" MetadataType="Schema" ID="3080aa28-1114-4883-8659-fc6b9781b7cb" SourceId="1" SourceUrl="http://localhost:22778/GDWebService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

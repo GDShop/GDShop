@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="GDWebService" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^E:\\Project\\Visual\ Studio\\GDShop2\\GDShop-2\.301\\GDShop\\GDWebService\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^E:\\Project\\Visual\ Studio\\GDShop2\\GDShop-2\.301\\GDShop\\GDWebService\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="gdshopConnectionString-Web.config Connection String" description="" value="Server=tcp:gdshop.database.windows.net,1433;Database=gdshop;User ID=zanty@gdshop;Password=Tanquoctot1.;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="">
+    <parameterEntry kind="XmlFile" scope="E:\\Project\\Visual\ Studio\\GDShop2\\GDShop-2\.301\\GDShop\\GDWebService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='gdshopConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

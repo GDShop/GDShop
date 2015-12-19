@@ -1,0 +1,194 @@
+﻿@using GDShop.Models;
+@model List<DonNhapHang>
+@{
+    ViewBag.Title = "DonNhapHang";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+                <div class="user-img-div">
+                    <img src="~/Content/Admin/img/user.jpg" class="img-circle" />
+
+                </div>
+
+            </li>
+            <li>
+                <a> <strong> Quản Lý </strong></a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","BaoMatRatCao")"><i class="fa fa-dashboard "></i>Sản Phẩm</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ThongTin","BaoMatRatCao", new { ten = "", diachi = "", sdt = "", i = 0, id = 0 })"><i class="fa fa-align-left"></i>Thông Tin</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhachHang","BaoMatRatCao")"><i class="fa fa-users"></i>Khách Hàng</a>
+            </li>
+            <li>
+                <a id="nhanvien" href="@Url.Action("NhanVien","BaoMatRatCao")"><i class="fa fa-users"></i>Nhân Viên</a>
+            </li>
+            <li>
+                <a href="@Url.Action("DonDathang","BaoMatRatCao")"><i class="fa fa-calendar-check-o"></i>Đơn Đặt Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("HoaDonBan","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn</a>
+            </li>
+            <li>
+                <a href="@Url.Action("GiaoHang","BaoMatRatCao")"><i class="fa fa-truck"></i>Giao Hàng</a>
+            </li>
+            <li>
+                <a class="active-menu" href="@Url.Action("HoaDonNhap","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn Nhập Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhoHang","BaoMatRatCao")"><i class="fa fa-server"></i>Kho Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ThongKe","BaoMatRatCao")"><i class="fa fa-bar-chart"></i>Thống Kê</a>
+            </li>
+
+
+        </ul>
+    </div>
+
+</nav>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<div id="page-wrapper" class="page-wrapper-cls">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12" style="display:inline;">
+                <h1 class="page-head-line">Quản Lý Hóa Đơn</h1>
+
+            </div>
+        </div>
+
+        <div class="row">
+            @using (Html.BeginForm("AddDonNhapHang", "BaoMatRatCao", new { @Url = Request.Url.ToString() }))
+            {
+                <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-plus-square-o"></i></button>
+            }
+            <div class="col-md-6" style="width:100%;">
+                <!--    Context Classes  -->
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        Hóa Đơn Nhập Hàng
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID Sản Phẩm</th>
+                                        <th>Số Lượng</th>
+                                        <th>Size</th>
+                                        <th>Đơn Giá</th>
+                                        <th>Tổng Tiền</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        
+                                        <tr>
+                                            @using (Html.BeginForm("UpdateDonNhapHang", "BaoMatRatCao", new { @MaSP = item.MaSP }))
+                                            {
+                                            <td class="cart_product">
+                                                <select id="idp-@item.MaSP" name="idp" class="form-control">
+                                                    @foreach (var itemP in ViewBag.listProduct)
+                                                    {
+                                                        <option value="@itemP.id">@itemP.id - @itemP.tensp</option>
+                                                    }
+                                                </select>
+                                                
+                                            </td>
+                                            
+                                            <td class="cart_description">
+                                                <input value="@item.SoLuong" type="number" name="soluongp"/>
+                                            </td>
+                                            <td class="cart_product">
+                                                <select id="idp-@item.Size" name="sizep" class="form-control">
+                                                    <option value="M">M</option>
+                                                    <option value="L">L</option>
+                                                    <option value="XL">XL</option>
+                                                </select>
+
+                                            </td>
+                                            <td class="cart_price">
+                                                <input value="@item.DonGia" type="number" name="dongiap" />
+                                            </td>
+                                            <td class="cart_total">
+                                                <p class="cart_total_price">@String.Format("{0:0,0}", int.Parse(@item.TongTien.ToString())) VNĐ</p>
+                                            </td>
+                                            <td class="cart_delete">
+                                                
+                                                    <button type="submit" class="cart_quantity_delete"><i class="fa fa-chevron-up"></i>Cập Nhật</button>
+                                                
+                                            </td>
+                                            }
+                                            <td class="cart_delete">
+                                                @using (Html.BeginForm("DeletecDonNhapHang", "BaoMatRatCao", new { @MaSP = item.MaSP }))
+                                                {
+                                                    <button type="submit" class=" cart_quantity_delete"><i class="fa fa-times"></i></button>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--  end  Context Classes  -->
+            </div>
+            <div class="col-sm-6" style="float:right;">
+                <div class="total_area">
+                        <a class="btn btn-success" style="margin-bottom:25px; width:60%">Tổng Tiền: <span>@String.Format("{0:0,0}", int.Parse(@Html.Action("TongTienHoaDonNhap", "BaoMatRatCao").ToString())) VNĐ</span></a>
+                    @using (Html.BeginForm("InsertCTDNH", "BaoMatRatCao"))
+                    {
+                    <select style="margin-bottom:25px; width:60%" id="nhacc" name="ncc" class="form-control">
+                        @foreach (var item in ViewBag.NCC)
+                        {
+                            <option value="@item.id">@item.id - @item.ten</option>
+                        }
+                    </select>
+
+                    <a href="@Url.Action("InsertCTDNH", "BaoMatRatCao")"> <input class="btn btn-primary btn-lg" style="margin-bottom:25px; width:60%"  type="submit" class="btn btn-default check_out" value="Nhập" /></a>
+
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+<script>
+    if ('@ViewBag.thongbao' != "")
+        alert('@ViewBag.thongbao');
+</script>
+@foreach (var item in Model)
+{
+    <script>
+        $('#idp-@item.MaSP').val('@item.MaSP');
+        $('#idp-@item.Size').val('@item.Size');
+    @*$('#cong-@item.MaSP').click(function () {
+        var i = parseInt($('#txtSoluong-@item.MaSP').val());
+        i = i + 1;
+        $('#txtSoluong-@item.MaSP').val(i);
+    });
+    $('#tru-@item.MaSP').click(function () {
+        var i = $('#txtSoluong-@item.MaSP').val();
+        i = i - 1;
+        if(i>=0)
+            $('#txtSoluong-@item.MaSP').val(i);
+
+    });*@
+    </script>
+}

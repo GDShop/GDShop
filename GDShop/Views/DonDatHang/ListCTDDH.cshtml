@@ -1,0 +1,133 @@
+﻿@using GDShop.GDWebservice;
+@{
+    ViewBag.Title = "Chi Tiết Đơn Đặt Hàng";
+    Layout = "~/Views/Layout/IndexLayout.cshtml";
+}
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<style>
+    .col-sm-3 {
+        display: none;
+    }
+
+    .recommended_items {
+        display: none;
+    }
+    #map {
+        width: 400px;
+        height: 300px;
+    }
+</style>
+
+
+
+<section id="do_action">
+    <div class="container">
+            <div class="col-sm-5 clearfix" style="width:50%;">
+                <div class="bill-to">
+                    <p>Thông tin Đơn Hàng</p>
+                    <hr />
+                        <div class="form-one" style="width:80%;">
+                            <span>ID Đơn Hàng: @ViewBag.ddh.id</span><br/>
+                            <span>Tên Khách Hàng: @ViewBag.kh.tenkh</span><br />
+                            <span>Địa Chỉ: @ViewBag.kh.diachikh</span><br />
+                            <span>Ngày Đặt: @ViewBag.ddh.ngaydathang</span><br />
+                            <span>Tổng Tiền: @ViewBag.ddh.tongtien</span><br />
+                            <span>Tình Trạng Đơn Hàng: @ViewBag.tinhtrang.tentt</span>
+                        </div>
+                </div>
+
+        </div>
+        <div class="col-sm-5 clearfix" style="width:50%; float:right;">
+            <div id="thongtingiaohang" class="bill-to">
+                <p>Thông Tin Giao Hàng</p>
+                <hr />
+                    <div class="form-two" style="width:80%;">
+                        <span>Biển Số Xe: @ViewBag.giaohang.biensoxe</span><br />
+                        <span>Tên Nhân Viên: @ViewBag.nhanvien.tennv</span><br />
+                        <span>Số Điện Thoại: @ViewBag.nhanvien.sdt</span><br />
+                        <span>Địa Điểm Hiện Tại: @ViewBag.giaohang.location</span>
+                        <div id="map"></div>
+                    </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="cart_items">
+    <div class="container">
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Hình</td>
+                        <td class="description">Tên Sản Phẩm</td>
+                        <td class="description">Size</td>
+                        <td class="price">Giá</td>
+                        <td class="quantity">Số Lượng</td>
+                        <td class="quantity">Thành Tiền</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.l)
+                    {
+                        <tr>
+                            <td class="cart_product">
+                                <a href="@Url.Action("DetailProduct","Product", new { @id = item.idsanpham })"><img src="~/Images/Product/@(((IEnumerable<Product>)ViewBag.listP).Single(n => n.id == item.idsanpham).id)" /></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4><a href="@Url.Action("DetailProduct","Product", new { @id = item.idsanpham })">@(((IEnumerable<Product>)ViewBag.listP).Single(n => n.id == item.idsanpham).tensp)</a></h4>
+                            </td>
+                            <td class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                    <h4>@item.size</h4>
+                                </div>
+                            </td>
+                            <td class="cart_price">
+                                <p>@String.Format("{0:0,0}", int.Parse(((IEnumerable<Product>)ViewBag.listP).Single(n => n.id == item.idsanpham).dongia.ToString())) VNĐ</p>
+                            </td>
+                            <td class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                   <h4>@item.soluong</h4>
+                                </div>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">@String.Format("{0:0,0}", int.Parse((item.soluong*((IEnumerable<Product>)ViewBag.listP).Single(n => n.id == item.idsanpham).dongia).ToString())) VNĐ</p>
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<script>
+      
+    if ('@ViewBag.giaohang.id' == 0) {
+        $("#thongtingiaohang").css("display", "none");
+    }
+    else {
+        $("#thongtingiaohang").css("display", "block");
+    }
+</script>
+<script>
+
+function initMap() {
+    var myLatLng = { lat: @ViewBag.giaohang.latitude, lng: @ViewBag.giaohang.longitude };
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+}
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB927ZtRkIkcgHUxV31djK-PHR42gQ_TWs&signed_in=true&callback=initMap"></script>
+

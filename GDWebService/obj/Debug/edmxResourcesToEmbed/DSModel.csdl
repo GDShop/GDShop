@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbshopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Comment" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idsanpham" Type="Int32" />
+    <Property Name="iduser" Type="Int32" />
+    <Property Name="comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Comment_Products" FromRole="Comment" ToRole="Products" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="CTDonDatHang" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iddonhang" Type="Int32" Nullable="false" />
+    <Property Name="idsanpham" Type="Int32" Nullable="false" />
+    <Property Name="soluong" Type="Int32" />
+    <NavigationProperty Name="DonDatHang" Relationship="Self.FK_CTDonDatHang_DonDatHang" FromRole="CTDonDatHang" ToRole="DonDatHang" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_CTDonDatHang_Products" FromRole="CTDonDatHang" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="CTHoaDonNhap" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idhoadonnhap" Type="Int32" Nullable="false" />
+    <Property Name="idsanpham" Type="Int32" Nullable="false" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="dongia" Type="Int32" />
+    <NavigationProperty Name="HoaDonNhap" Relationship="Self.FK_CTHoaDonNhap_HoaDonNhap" FromRole="CTHoaDonNhap" ToRole="HoaDonNhap" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_CTHoaDonNhap_Products" FromRole="CTHoaDonNhap" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Customer" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenkh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="diachikh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dienthoai" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DonDatHangs" Relationship="Self.FK_DonDatHang_Customer" FromRole="Customer" ToRole="DonDatHang" />
+    <NavigationProperty Name="HoaDonBans" Relationship="Self.FK_HoaDonBan_Customer" FromRole="Customer" ToRole="HoaDonBan" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Customer" FromRole="Customer" ToRole="User" />
+  </EntityType>
+  <EntityType Name="DonDatHang" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ngaydathang" Type="DateTime" Precision="3" />
+    <Property Name="idkhachhang" Type="Int32" Nullable="false" />
+    <Property Name="tongtien" Type="Int32" />
+    <NavigationProperty Name="CTDonDatHangs" Relationship="Self.FK_CTDonDatHang_DonDatHang" FromRole="DonDatHang" ToRole="CTDonDatHang" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_DonDatHang_Customer" FromRole="DonDatHang" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="HoaDonBan" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idkhachhang" Type="Int32" />
+    <Property Name="idnhanvien" Type="Int32" />
+    <Property Name="ngayban" Type="DateTime" Precision="3" />
+    <Property Name="tongtien" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_HoaDonBan_Customer" FromRole="HoaDonBan" ToRole="Customer" />
+    <NavigationProperty Name="NhanVien" Relationship="Self.FK_HoaDonBan_NhanVien" FromRole="HoaDonBan" ToRole="NhanVien" />
+  </EntityType>
+  <EntityType Name="HoaDonNhap" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idnhacungcap" Type="Int32" Nullable="false" />
+    <Property Name="ngaynhap" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="idnhanvien" Type="Int32" Nullable="false" />
+    <Property Name="tongtien" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CTHoaDonNhaps" Relationship="Self.FK_CTHoaDonNhap_HoaDonNhap" FromRole="HoaDonNhap" ToRole="CTHoaDonNhap" />
+    <NavigationProperty Name="NhaCungCap" Relationship="Self.FK_HoaDonNhap_NhaCungCap" FromRole="HoaDonNhap" ToRole="NhaCungCap" />
+    <NavigationProperty Name="NhanVien" Relationship="Self.FK_HoaDonNhap_NhanVien" FromRole="HoaDonNhap" ToRole="NhanVien" />
+  </EntityType>
+  <EntityType Name="KhoHang" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idsanpham" Type="Int32" />
+    <Property Name="soluong" Type="Int32" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_KhoHang_Products" FromRole="KhoHang" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="NhaCungCap" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tennhacungcap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="diachinhacungcap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sodtnhacungcap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HoaDonNhaps" Relationship="Self.FK_HoaDonNhap_NhaCungCap" FromRole="NhaCungCap" ToRole="HoaDonNhap" />
+  </EntityType>
+  <EntityType Name="NhanVien" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tennv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="diachinv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="sodt" Type="Int32" />
+    <NavigationProperty Name="HoaDonBans" Relationship="Self.FK_HoaDonBan_NhanVien" FromRole="NhanVien" ToRole="HoaDonBan" />
+    <NavigationProperty Name="HoaDonNhaps" Relationship="Self.FK_HoaDonNhap_NhanVien" FromRole="NhanVien" ToRole="HoaDonNhap" />
+  </EntityType>
+  <EntityType Name="Product" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tensp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dongia" Type="Int32" />
+    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idloai" Type="Int32" />
+    <Property Name="idchatlieu" Type="Int32" />
+    <Property Name="idsize" Type="Int32" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Products" FromRole="Products" ToRole="Comment" />
+    <NavigationProperty Name="CTDonDatHangs" Relationship="Self.FK_CTDonDatHang_Products" FromRole="Products" ToRole="CTDonDatHang" />
+    <NavigationProperty Name="CTHoaDonNhaps" Relationship="Self.FK_CTHoaDonNhap_Products" FromRole="Products" ToRole="CTHoaDonNhap" />
+    <NavigationProperty Name="KhoHangs" Relationship="Self.FK_KhoHang_Products" FromRole="Products" ToRole="KhoHang" />
+    <NavigationProperty Name="Quality" Relationship="Self.FK_Products_Quality" FromRole="Products" ToRole="Quality" />
+    <NavigationProperty Name="Size" Relationship="Self.FK_Products_Size" FromRole="Products" ToRole="Size" />
+    <NavigationProperty Name="Type" Relationship="Self.FK_Products_Types" FromRole="Products" ToRole="Types" />
+  </EntityType>
+  <EntityType Name="Quality" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenchatlieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Quality" FromRole="Quality" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Size" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tensize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Size" FromRole="Size" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="sysdiagram" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Type" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenloai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Types" FromRole="Types" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="User" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="taikhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="idkhachhang" Type="Int32" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_User_Customer" FromRole="User" ToRole="Customer" />
+  </EntityType>
+  <Association Name="FK_Comment_Products">
+    <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="idsanpham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="iduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTDonDatHang_DonDatHang">
+    <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="1" />
+    <End Role="CTDonDatHang" Type="Self.CTDonDatHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonDatHang">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CTDonDatHang">
+        <PropertyRef Name="iddonhang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTDonDatHang_Products">
+    <End Role="Products" Type="Self.Product" Multiplicity="1" />
+    <End Role="CTDonDatHang" Type="Self.CTDonDatHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CTDonDatHang">
+        <PropertyRef Name="idsanpham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTHoaDonNhap_HoaDonNhap">
+    <End Role="HoaDonNhap" Type="Self.HoaDonNhap" Multiplicity="1" />
+    <End Role="CTHoaDonNhap" Type="Self.CTHoaDonNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDonNhap">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CTHoaDonNhap">
+        <PropertyRef Name="idhoadonnhap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTHoaDonNhap_Products">
+    <End Role="Products" Type="Self.Product" Multiplicity="1" />
+    <End Role="CTHoaDonNhap" Type="Self.CTHoaDonNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CTHoaDonNhap">
+        <PropertyRef Name="idsanpham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DonDatHang_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DonDatHang">
+        <PropertyRef Name="idkhachhang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDonBan_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="HoaDonBan" Type="Self.HoaDonBan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HoaDonBan">
+        <PropertyRef Name="idkhachhang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="idkhachhang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDonBan_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="HoaDonBan" Type="Self.HoaDonBan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HoaDonBan">
+        <PropertyRef Name="idnhanvien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDonNhap_NhaCungCap">
+    <End Role="NhaCungCap" Type="Self.NhaCungCap" Multiplicity="1" />
+    <End Role="HoaDonNhap" Type="Self.HoaDonNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaCungCap">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HoaDonNhap">
+        <PropertyRef Name="idnhacungcap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDonNhap_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
+    <End Role="HoaDonNhap" Type="Self.HoaDonNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HoaDonNhap">
+        <PropertyRef Name="idnhanvien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KhoHang_Products">
+    <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="KhoHang" Type="Self.KhoHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="KhoHang">
+        <PropertyRef Name="idsanpham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Quality">
+    <End Role="Quality" Type="Self.Quality" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quality">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="idchatlieu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Size">
+    <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Size">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="idsize" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Types">
+    <End Role="Types" Type="Self.Type" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Types">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="idloai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbshopEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Comments" EntityType="Self.Comment" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="CTDonDatHangs" EntityType="Self.CTDonDatHang" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="CTHoaDonNhaps" EntityType="Self.CTHoaDonNhap" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="DonDatHangs" EntityType="Self.DonDatHang" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="HoaDonBans" EntityType="Self.HoaDonBan" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="HoaDonNhaps" EntityType="Self.HoaDonNhap" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="KhoHangs" EntityType="Self.KhoHang" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="NhaCungCaps" EntityType="Self.NhaCungCap" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="NhanViens" EntityType="Self.NhanVien" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="Products" EntityType="Self.Product" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="Qualities" EntityType="Self.Quality" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="Sizes" EntityType="Self.Size" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="Types" EntityType="Self.Type" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="Users" EntityType="Self.User" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <AssociationSet Name="FK_Comment_Products" Association="Self.FK_Comment_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTDonDatHang_DonDatHang" Association="Self.FK_CTDonDatHang_DonDatHang">
+      <End Role="DonDatHang" EntitySet="DonDatHangs" />
+      <End Role="CTDonDatHang" EntitySet="CTDonDatHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTDonDatHang_Products" Association="Self.FK_CTDonDatHang_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="CTDonDatHang" EntitySet="CTDonDatHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTHoaDonNhap_HoaDonNhap" Association="Self.FK_CTHoaDonNhap_HoaDonNhap">
+      <End Role="HoaDonNhap" EntitySet="HoaDonNhaps" />
+      <End Role="CTHoaDonNhap" EntitySet="CTHoaDonNhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTHoaDonNhap_Products" Association="Self.FK_CTHoaDonNhap_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="CTHoaDonNhap" EntitySet="CTHoaDonNhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DonDatHang_Customer" Association="Self.FK_DonDatHang_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="DonDatHang" EntitySet="DonDatHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDonBan_Customer" Association="Self.FK_HoaDonBan_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="HoaDonBan" EntitySet="HoaDonBans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Customer" Association="Self.FK_User_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDonBan_NhanVien" Association="Self.FK_HoaDonBan_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanViens" />
+      <End Role="HoaDonBan" EntitySet="HoaDonBans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDonNhap_NhaCungCap" Association="Self.FK_HoaDonNhap_NhaCungCap">
+      <End Role="NhaCungCap" EntitySet="NhaCungCaps" />
+      <End Role="HoaDonNhap" EntitySet="HoaDonNhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDonNhap_NhanVien" Association="Self.FK_HoaDonNhap_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanViens" />
+      <End Role="HoaDonNhap" EntitySet="HoaDonNhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KhoHang_Products" Association="Self.FK_KhoHang_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="KhoHang" EntitySet="KhoHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Quality" Association="Self.FK_Products_Quality">
+      <End Role="Quality" EntitySet="Qualities" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Size" Association="Self.FK_Products_Size">
+      <End Role="Size" EntitySet="Sizes" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Types" Association="Self.FK_Products_Types">
+      <End Role="Types" EntitySet="Types" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

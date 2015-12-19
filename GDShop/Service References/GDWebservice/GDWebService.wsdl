@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://gdshop.com/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://gdshop.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://gdshop.com/Imports">
+      <xsd:import schemaLocation="http://localhost:22778/GDWebService.svc?xsd=xsd0" namespace="http://gdshop.com/" />
+      <xsd:import schemaLocation="http://localhost:22778/GDWebService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:22778/GDWebService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/GDWebService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IGDWebService_getListProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListProduct" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:getProduct" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListBrand_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListBrand" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListBrand_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListBrandResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getBrandByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getBrandByID" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getBrandByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getBrandByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getTypeByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTypeByID" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getTypeByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTypeByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getQByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getQByID" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getQByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getQByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListQ_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListQ" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListQ_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListQResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListT_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListT" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListL1_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListL1" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListL1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListL1Response" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListSPTheoLoai_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListSPTheoLoai" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListSPTheoLoai_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListSPTheoLoaiResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListSPTheoType_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListSPTheoType" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListSPTheoType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListSPTheoTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListSPTheoBrand_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListSPTheoBrand" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListSPTheoBrand_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListSPTheoBrandResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_countType_InputMessage">
+    <wsdl:part name="parameters" element="tns:countType" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_countType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:countTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_searchSize_InputMessage">
+    <wsdl:part name="parameters" element="tns:searchSize" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_searchSize_OutputMessage">
+    <wsdl:part name="parameters" element="tns:searchSizeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_insertCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:insertCustomer" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_insertCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:insertCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_checkTaiKhoan_InputMessage">
+    <wsdl:part name="parameters" element="tns:checkTaiKhoan" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_checkTaiKhoan_OutputMessage">
+    <wsdl:part name="parameters" element="tns:checkTaiKhoanResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_checkDangNhap_InputMessage">
+    <wsdl:part name="parameters" element="tns:checkDangNhap" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_checkDangNhap_OutputMessage">
+    <wsdl:part name="parameters" element="tns:checkDangNhapResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_insertDonDatHang_InputMessage">
+    <wsdl:part name="parameters" element="tns:insertDonDatHang" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_insertDonDatHang_OutputMessage">
+    <wsdl:part name="parameters" element="tns:insertDonDatHangResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getDonDatHang_InputMessage">
+    <wsdl:part name="parameters" element="tns:getDonDatHang" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getDonDatHang_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getDonDatHangResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_insertCTDonDatHang_InputMessage">
+    <wsdl:part name="parameters" element="tns:insertCTDonDatHang" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_insertCTDonDatHang_OutputMessage">
+    <wsdl:part name="parameters" element="tns:insertCTDonDatHangResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_updateCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateCustomer" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_updateCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListDDHTheoID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListDDHTheoID" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListDDHTheoID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListDDHTheoIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListCTDDHTheoID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListCTDDHTheoID" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListCTDDHTheoID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListCTDDHTheoIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_timKiemSPTheoTen_InputMessage">
+    <wsdl:part name="parameters" element="tns:timKiemSPTheoTen" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_timKiemSPTheoTen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:timKiemSPTheoTenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getDDHTheoID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getDDHTheoID" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getDDHTheoID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getDDHTheoIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getKHTheoID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getKHTheoID" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getKHTheoID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getKHTheoIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getTTHoaDonTheoID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTTHoaDonTheoID" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getTTHoaDonTheoID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTTHoaDonTheoIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_timXeChuaIDDDH_InputMessage">
+    <wsdl:part name="parameters" element="tns:timXeChuaIDDDH" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_timXeChuaIDDDH_OutputMessage">
+    <wsdl:part name="parameters" element="tns:timXeChuaIDDDHResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getNhanVienTheoID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getNhanVienTheoID" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getNhanVienTheoID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getNhanVienTheoIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListAllProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListAllProduct" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListAllProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListAllProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_loginAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:loginAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_loginAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:loginAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_InsertProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProduct" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_InsertProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_UpdateProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProduct" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_UpdateProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListNhanVien_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListNhanVien" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListNhanVien_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListNhanVienResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListNCC_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListNCC" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListNCC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListNCCResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_SuaNCC_InputMessage">
+    <wsdl:part name="parameters" element="tns:SuaNCC" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_SuaNCC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SuaNCCResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_SuaLoai_InputMessage">
+    <wsdl:part name="parameters" element="tns:SuaLoai" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_SuaLoai_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SuaLoaiResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_SuaThuongHieu_InputMessage">
+    <wsdl:part name="parameters" element="tns:SuaThuongHieu" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_SuaThuongHieu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SuaThuongHieuResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_SuaChatLieu_InputMessage">
+    <wsdl:part name="parameters" element="tns:SuaChatLieu" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_SuaChatLieu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SuaChatLieuResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_ThemNCC_InputMessage">
+    <wsdl:part name="parameters" element="tns:ThemNCC" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_ThemNCC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ThemNCCResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_ThemLoai_InputMessage">
+    <wsdl:part name="parameters" element="tns:ThemLoai" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_ThemLoai_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ThemLoaiResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_ThemThuongHieu_InputMessage">
+    <wsdl:part name="parameters" element="tns:ThemThuongHieu" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_ThemThuongHieu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ThemThuongHieuResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_ThemChatLieu_InputMessage">
+    <wsdl:part name="parameters" element="tns:ThemChatLieu" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_ThemChatLieu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ThemChatLieuResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListDDH_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListDDH" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListDDH_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListDDHResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_UpdateKhoHang_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateKhoHang" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_UpdateKhoHang_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateKhoHangResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_InsertHoaDon_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertHoaDon" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_InsertHoaDon_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertHoaDonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_UpdateDDH_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDDH" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_UpdateDDH_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDDHResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListHDB_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListHDB" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListHDB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListHDBResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getHDBTheoID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getHDBTheoID" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getHDBTheoID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getHDBTheoIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListShipCar_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListShipCar" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListShipCar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListShipCarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_InsertCTShipCar_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertCTShipCar" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_InsertCTShipCar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertCTShipCarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_UpdateHoaDonBan_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateHoaDonBan" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_UpdateHoaDonBan_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateHoaDonBanResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListCTShipCar_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListCTShipCar" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListCTShipCar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListCTShipCarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListHodDonTheoIDNV_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListHodDonTheoIDNV" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListHodDonTheoIDNV_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListHodDonTheoIDNVResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_UpdateShipCar_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateShipCar" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_UpdateShipCar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateShipCarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_LoginShipCar_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginShipCar" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_LoginShipCar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginShipCarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListKH_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListKH" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListKH_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListKHResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListChucVu_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListChucVu" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListChucVu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListChucVuResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_updateNhanVien_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateNhanVien" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_updateNhanVien_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateNhanVienResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_insertNhanVien_InputMessage">
+    <wsdl:part name="parameters" element="tns:insertNhanVien" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_insertNhanVien_OutputMessage">
+    <wsdl:part name="parameters" element="tns:insertNhanVienResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_insertShipCar_InputMessage">
+    <wsdl:part name="parameters" element="tns:insertShipCar" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_insertShipCar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:insertShipCarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_updateShipCarForWeb_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateShipCarForWeb" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_updateShipCarForWeb_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateShipCarForWebResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_InsertHoaDonNhap_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertHoaDonNhap" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_InsertHoaDonNhap_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertHoaDonNhapResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_InsertCTHoaDonNhap_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertCTHoaDonNhap" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_InsertCTHoaDonNhap_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertCTHoaDonNhapResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getHDN_InputMessage">
+    <wsdl:part name="parameters" element="tns:getHDN" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getHDN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getHDNResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_NhapKho_InputMessage">
+    <wsdl:part name="parameters" element="tns:NhapKho" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_NhapKho_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NhapKhoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_UpdateHoaDonAdnroid_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateHoaDonAdnroid" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_UpdateHoaDonAdnroid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateHoaDonAdnroidResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListHoaDonNhap_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListHoaDonNhap" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListHoaDonNhap_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListHoaDonNhapResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListCTHoaDonNhap_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListCTHoaDonNhap" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListCTHoaDonNhap_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListCTHoaDonNhapResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListKhoHang_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListKhoHang" />
+  </wsdl:message>
+  <wsdl:message name="IGDWebService_getListKhoHang_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListKhoHangResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IGDWebService">
+    <wsdl:operation name="getListProduct">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListProduct" message="tns:IGDWebService_getListProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListProductResponse" message="tns:IGDWebService_getListProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getProduct">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getProduct" message="tns:IGDWebService_getProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getProductResponse" message="tns:IGDWebService_getProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListBrand">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListBrand" message="tns:IGDWebService_getListBrand_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListBrandResponse" message="tns:IGDWebService_getListBrand_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getBrandByID">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getBrandByID" message="tns:IGDWebService_getBrandByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getBrandByIDResponse" message="tns:IGDWebService_getBrandByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTypeByID">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getTypeByID" message="tns:IGDWebService_getTypeByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getTypeByIDResponse" message="tns:IGDWebService_getTypeByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getQByID">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getQByID" message="tns:IGDWebService_getQByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getQByIDResponse" message="tns:IGDWebService_getQByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListQ">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListQ" message="tns:IGDWebService_getListQ_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListQResponse" message="tns:IGDWebService_getListQ_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListT">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListT" message="tns:IGDWebService_getListT_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListTResponse" message="tns:IGDWebService_getListT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListL1">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListL1" message="tns:IGDWebService_getListL1_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListL1Response" message="tns:IGDWebService_getListL1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListSPTheoLoai">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListSPTheoLoai" message="tns:IGDWebService_getListSPTheoLoai_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListSPTheoLoaiResponse" message="tns:IGDWebService_getListSPTheoLoai_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListSPTheoType">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListSPTheoType" message="tns:IGDWebService_getListSPTheoType_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListSPTheoTypeResponse" message="tns:IGDWebService_getListSPTheoType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListSPTheoBrand">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListSPTheoBrand" message="tns:IGDWebService_getListSPTheoBrand_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListSPTheoBrandResponse" message="tns:IGDWebService_getListSPTheoBrand_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="countType">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/countType" message="tns:IGDWebService_countType_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/countTypeResponse" message="tns:IGDWebService_countType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="searchSize">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/searchSize" message="tns:IGDWebService_searchSize_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/searchSizeResponse" message="tns:IGDWebService_searchSize_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="insertCustomer">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/insertCustomer" message="tns:IGDWebService_insertCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/insertCustomerResponse" message="tns:IGDWebService_insertCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="checkTaiKhoan">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/checkTaiKhoan" message="tns:IGDWebService_checkTaiKhoan_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/checkTaiKhoanResponse" message="tns:IGDWebService_checkTaiKhoan_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="checkDangNhap">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/checkDangNhap" message="tns:IGDWebService_checkDangNhap_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/checkDangNhapResponse" message="tns:IGDWebService_checkDangNhap_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="insertDonDatHang">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/insertDonDatHang" message="tns:IGDWebService_insertDonDatHang_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/insertDonDatHangResponse" message="tns:IGDWebService_insertDonDatHang_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getDonDatHang">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getDonDatHang" message="tns:IGDWebService_getDonDatHang_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getDonDatHangResponse" message="tns:IGDWebService_getDonDatHang_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="insertCTDonDatHang">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/insertCTDonDatHang" message="tns:IGDWebService_insertCTDonDatHang_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/insertCTDonDatHangResponse" message="tns:IGDWebService_insertCTDonDatHang_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateCustomer">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/updateCustomer" message="tns:IGDWebService_updateCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/updateCustomerResponse" message="tns:IGDWebService_updateCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListDDHTheoID">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListDDHTheoID" message="tns:IGDWebService_getListDDHTheoID_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListDDHTheoIDResponse" message="tns:IGDWebService_getListDDHTheoID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListCTDDHTheoID">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListCTDDHTheoID" message="tns:IGDWebService_getListCTDDHTheoID_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListCTDDHTheoIDResponse" message="tns:IGDWebService_getListCTDDHTheoID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="timKiemSPTheoTen">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/timKiemSPTheoTen" message="tns:IGDWebService_timKiemSPTheoTen_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/timKiemSPTheoTenResponse" message="tns:IGDWebService_timKiemSPTheoTen_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getDDHTheoID">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getDDHTheoID" message="tns:IGDWebService_getDDHTheoID_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getDDHTheoIDResponse" message="tns:IGDWebService_getDDHTheoID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getKHTheoID">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getKHTheoID" message="tns:IGDWebService_getKHTheoID_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getKHTheoIDResponse" message="tns:IGDWebService_getKHTheoID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTTHoaDonTheoID">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getTTHoaDonTheoID" message="tns:IGDWebService_getTTHoaDonTheoID_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getTTHoaDonTheoIDResponse" message="tns:IGDWebService_getTTHoaDonTheoID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="timXeChuaIDDDH">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/timXeChuaIDDDH" message="tns:IGDWebService_timXeChuaIDDDH_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/timXeChuaIDDDHResponse" message="tns:IGDWebService_timXeChuaIDDDH_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getNhanVienTheoID">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getNhanVienTheoID" message="tns:IGDWebService_getNhanVienTheoID_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getNhanVienTheoIDResponse" message="tns:IGDWebService_getNhanVienTheoID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListAllProduct">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListAllProduct" message="tns:IGDWebService_getListAllProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListAllProductResponse" message="tns:IGDWebService_getListAllProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="loginAdmin">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/loginAdmin" message="tns:IGDWebService_loginAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/loginAdminResponse" message="tns:IGDWebService_loginAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertProduct">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/InsertProduct" message="tns:IGDWebService_InsertProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/InsertProductResponse" message="tns:IGDWebService_InsertProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProduct">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/UpdateProduct" message="tns:IGDWebService_UpdateProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/UpdateProductResponse" message="tns:IGDWebService_UpdateProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListNhanVien">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListNhanVien" message="tns:IGDWebService_getListNhanVien_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListNhanVienResponse" message="tns:IGDWebService_getListNhanVien_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListNCC">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListNCC" message="tns:IGDWebService_getListNCC_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListNCCResponse" message="tns:IGDWebService_getListNCC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SuaNCC">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/SuaNCC" message="tns:IGDWebService_SuaNCC_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/SuaNCCResponse" message="tns:IGDWebService_SuaNCC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SuaLoai">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/SuaLoai" message="tns:IGDWebService_SuaLoai_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/SuaLoaiResponse" message="tns:IGDWebService_SuaLoai_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SuaThuongHieu">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/SuaThuongHieu" message="tns:IGDWebService_SuaThuongHieu_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/SuaThuongHieuResponse" message="tns:IGDWebService_SuaThuongHieu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SuaChatLieu">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/SuaChatLieu" message="tns:IGDWebService_SuaChatLieu_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/SuaChatLieuResponse" message="tns:IGDWebService_SuaChatLieu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ThemNCC">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/ThemNCC" message="tns:IGDWebService_ThemNCC_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/ThemNCCResponse" message="tns:IGDWebService_ThemNCC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ThemLoai">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/ThemLoai" message="tns:IGDWebService_ThemLoai_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/ThemLoaiResponse" message="tns:IGDWebService_ThemLoai_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ThemThuongHieu">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/ThemThuongHieu" message="tns:IGDWebService_ThemThuongHieu_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/ThemThuongHieuResponse" message="tns:IGDWebService_ThemThuongHieu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ThemChatLieu">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/ThemChatLieu" message="tns:IGDWebService_ThemChatLieu_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/ThemChatLieuResponse" message="tns:IGDWebService_ThemChatLieu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListDDH">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListDDH" message="tns:IGDWebService_getListDDH_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListDDHResponse" message="tns:IGDWebService_getListDDH_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateKhoHang">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/UpdateKhoHang" message="tns:IGDWebService_UpdateKhoHang_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/UpdateKhoHangResponse" message="tns:IGDWebService_UpdateKhoHang_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertHoaDon">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/InsertHoaDon" message="tns:IGDWebService_InsertHoaDon_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/InsertHoaDonResponse" message="tns:IGDWebService_InsertHoaDon_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDDH">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/UpdateDDH" message="tns:IGDWebService_UpdateDDH_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/UpdateDDHResponse" message="tns:IGDWebService_UpdateDDH_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListHDB">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListHDB" message="tns:IGDWebService_getListHDB_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListHDBResponse" message="tns:IGDWebService_getListHDB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getHDBTheoID">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getHDBTheoID" message="tns:IGDWebService_getHDBTheoID_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getHDBTheoIDResponse" message="tns:IGDWebService_getHDBTheoID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListShipCar">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListShipCar" message="tns:IGDWebService_getListShipCar_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListShipCarResponse" message="tns:IGDWebService_getListShipCar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertCTShipCar">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/InsertCTShipCar" message="tns:IGDWebService_InsertCTShipCar_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/InsertCTShipCarResponse" message="tns:IGDWebService_InsertCTShipCar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateHoaDonBan">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/UpdateHoaDonBan" message="tns:IGDWebService_UpdateHoaDonBan_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/UpdateHoaDonBanResponse" message="tns:IGDWebService_UpdateHoaDonBan_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListCTShipCar">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListCTShipCar" message="tns:IGDWebService_getListCTShipCar_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListCTShipCarResponse" message="tns:IGDWebService_getListCTShipCar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListHodDonTheoIDNV">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListHodDonTheoIDNV" message="tns:IGDWebService_getListHodDonTheoIDNV_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListHodDonTheoIDNVResponse" message="tns:IGDWebService_getListHodDonTheoIDNV_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateShipCar">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/UpdateShipCar" message="tns:IGDWebService_UpdateShipCar_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/UpdateShipCarResponse" message="tns:IGDWebService_UpdateShipCar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginShipCar">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/LoginShipCar" message="tns:IGDWebService_LoginShipCar_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/LoginShipCarResponse" message="tns:IGDWebService_LoginShipCar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListKH">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListKH" message="tns:IGDWebService_getListKH_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListKHResponse" message="tns:IGDWebService_getListKH_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListChucVu">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListChucVu" message="tns:IGDWebService_getListChucVu_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListChucVuResponse" message="tns:IGDWebService_getListChucVu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateNhanVien">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/updateNhanVien" message="tns:IGDWebService_updateNhanVien_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/updateNhanVienResponse" message="tns:IGDWebService_updateNhanVien_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="insertNhanVien">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/insertNhanVien" message="tns:IGDWebService_insertNhanVien_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/insertNhanVienResponse" message="tns:IGDWebService_insertNhanVien_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="insertShipCar">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/insertShipCar" message="tns:IGDWebService_insertShipCar_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/insertShipCarResponse" message="tns:IGDWebService_insertShipCar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateShipCarForWeb">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/updateShipCarForWeb" message="tns:IGDWebService_updateShipCarForWeb_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/updateShipCarForWebResponse" message="tns:IGDWebService_updateShipCarForWeb_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertHoaDonNhap">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/InsertHoaDonNhap" message="tns:IGDWebService_InsertHoaDonNhap_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/InsertHoaDonNhapResponse" message="tns:IGDWebService_InsertHoaDonNhap_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertCTHoaDonNhap">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/InsertCTHoaDonNhap" message="tns:IGDWebService_InsertCTHoaDonNhap_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/InsertCTHoaDonNhapResponse" message="tns:IGDWebService_InsertCTHoaDonNhap_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getHDN">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getHDN" message="tns:IGDWebService_getHDN_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getHDNResponse" message="tns:IGDWebService_getHDN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NhapKho">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/NhapKho" message="tns:IGDWebService_NhapKho_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/NhapKhoResponse" message="tns:IGDWebService_NhapKho_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateHoaDonAdnroid">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/UpdateHoaDonAdnroid" message="tns:IGDWebService_UpdateHoaDonAdnroid_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/UpdateHoaDonAdnroidResponse" message="tns:IGDWebService_UpdateHoaDonAdnroid_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListHoaDonNhap">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListHoaDonNhap" message="tns:IGDWebService_getListHoaDonNhap_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListHoaDonNhapResponse" message="tns:IGDWebService_getListHoaDonNhap_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListCTHoaDonNhap">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListCTHoaDonNhap" message="tns:IGDWebService_getListCTHoaDonNhap_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListCTHoaDonNhapResponse" message="tns:IGDWebService_getListCTHoaDonNhap_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListKhoHang">
+      <wsdl:input wsaw:Action="http://gdshop.com/IGDWebService/getListKhoHang" message="tns:IGDWebService_getListKhoHang_InputMessage" />
+      <wsdl:output wsaw:Action="http://gdshop.com/IGDWebService/getListKhoHangResponse" message="tns:IGDWebService_getListKhoHang_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,167 @@
+﻿@using GDShop.GDWebservice;
+@model Product
+@{
+    ViewBag.Title = "Chi Tiết Sản Phẩm";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+                <div class="user-img-div">
+                    <img src="~/Content/Admin/img/user.jpg" class="img-circle" />
+
+                </div>
+
+            </li>
+            <li>
+                <a> <strong> Quản Lý </strong></a>
+            </li>
+
+            <li>
+                <a class="active-menu" href="@Url.Action("Index","BaoMatRatCao")"><i class="fa fa-dashboard "></i>Sản Phẩm</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ThongTin","BaoMatRatCao", new { ten = "", diachi = "", sdt = "", i = 0, id = 0 })"><i class="fa fa-align-left"></i>Thông Tin</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhachHang","BaoMatRatCao")"><i class="fa fa-users"></i>Khách Hàng</a>
+            </li>
+            <li>
+                <a id="nhanvien" href="@Url.Action("NhanVien","BaoMatRatCao")"><i class="fa fa-users"></i>Nhân Viên</a>
+            </li>
+            <li>
+                <a href="@Url.Action("DonDathang","BaoMatRatCao")"><i class="fa fa-calendar-check-o"></i>Đơn Đặt Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("HoaDonBan","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn</a>
+            </li>
+            <li>
+                <a href="@Url.Action("GiaoHang","BaoMatRatCao")"><i class="fa fa-truck"></i>Giao Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("HoaDonNhap","BaoMatRatCao")"><i class="fa fa-book"></i>Hóa Đơn Nhập Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("KhoHang","BaoMatRatCao")"><i class="fa fa-server"></i>Kho Hàng</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ThongKe","BaoMatRatCao")"><i class="fa fa-bar-chart"></i>Thống Kê</a>
+            </li>
+
+
+        </ul>
+    </div>
+
+</nav>
+<div id="page-wrapper" class="page-wrapper-cls">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-head-line">Chi Tiết Sản Phẩm</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" style="width:100%;">
+
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        Thông Tin Sản Phẩm
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("UpdateCTSP", "BaoMatRatCao", new { id = Model.id }, FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        {
+                            <div style="width:45%; float:left;">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">ID</label>
+                                    <input type="text" class="form-control" id="txtID" name="txtID" value="@Model.id" disabled />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tên Sản Phẩm</label>
+                                    <input type="text" class="form-control" id="txtTenSP" name="txtTenSP" value="@Model.tensp" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Đơn Giá</label>
+                                    <input type="number" class="form-control" id="txtDonGia" name="txtDonGia" value="@Model.dongia" />
+                                </div>
+                                <hr />
+                                @ViewBag.thongbao1
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Hình 1: </label><label for="exampleInputPassword1"> @Model.image1</label>
+                                    <input type="file" id="txtImage1" name="file" /><br />
+                                    <label for="exampleInputPassword1">Hình 2: </label><label for="exampleInputPassword1"> @Model.image2</label>
+                                    <input type="file" id="txtImage2" name="file2" /><br />
+                                    <label for="exampleInputPassword1">Hình 3: </label><label for="exampleInputPassword1"> @Model.image3</label>
+                                    <input type="file" id="txtImage3" name="file3" />
+                                </div>
+                            </div>
+                            <div style="width:45%; float:right;">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="taydai" name="taydai" /> Tay Dài
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Loại</label>
+                                    <select id="slLoai" name="slLoai" class="form-control">
+                                        @foreach (var item in @ViewBag.getT)
+                                        {
+                                            <option value="@item.id">@item.tenloai</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Chất Liệu</label>
+                                    <select id="slCL" name="slCL" class="form-control">
+                                        @foreach (var item in ViewBag.getQ)
+                                        {
+                                            <option value="@item.id">@item.tenchatlieu</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Thương Hiệu</label>
+                                    <select id="slTH" name="slTH" class="form-control">
+                                        @foreach (var item in ViewBag.getB)
+                                        {
+                                            <option value="@item.id">@item.ten</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Trạng Thái</label>
+                                    <select id="slTT" name="slTT" class="form-control">
+                                        <option>new</option>
+                                        <option>old</option>
+                                        <option>hide</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr />
+                            <button style="float:right;" type="submit" class="btn btn-default"><i class="fa fa-floppy-o"></i> Lưu</button>
+                        }
+                        <a style="float:left;" href="@Url.Action("Index","BaoMatRatCao")" class="btn btn-default" id="back"><i class="fa fa-arrow-left"></i> Quay Lại</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+
+    if ('@Model.taydai' == 1) {
+        $('#taydai').prop('checked', true);
+    }
+    else
+        $('#taydai').prop('checked', false);
+    $("#slLoai").val('@ViewBag.type.id');
+    $("#slCL").val('@ViewBag.q.id');
+    $("#slTH").val('@ViewBag.brand.id');
+    $("#slTT").val('@Model.trangthai');
+    if ('@ViewBag.thongbao' != "")
+        alert('@ViewBag.thongbao');
+</script>

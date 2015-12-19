@@ -1,0 +1,82 @@
+﻿@using GDShop.GDWebservice;
+@{
+    ViewBag.Title = "DetailProduct";
+    Layout = "~/Views/Layout/IndexLayout.cshtml";
+}
+
+<div class="features_items">
+    <!--features_items-->
+    <h2 class="title text-center">Chi Tiết Sản Phẩm @Model.tensp</h2>
+
+    <div class="col-md-5 single-top-left">
+
+        <!-- Wrapper for slides -->
+        <div class="flexslider">
+            <ul class="slides">
+                <li data-thumb="@Url.Content("~/Images/Product/"+Model.image1)">
+                    <div class="thumb-image"><img  src="~/Images/Product/@Model.image1" data-imagezoom="true" class="img-responsive" alt="" /> </div>
+                </li>
+                <li data-thumb="@Url.Content("~/Images/Product/"+Model.image2)">
+                    <div  class="thumb-image"> <img src="~/Images/Product/@Model.image2" data-imagezoom="true" class="img-responsive" alt="" /> </div>
+                </li>
+                <li data-thumb="@Url.Content("~/Images/Product/"+Model.image3)">
+                    <div class="thumb-image"> <img src="~/Images/Product/@Model.image3" data-imagezoom="true" class="img-responsive" alt="" /> </div>
+                </li>
+            </ul>
+        </div>
+        <!-- FlexSlider -->
+        <script src="~/Scripts/imagezoom.js"></script>
+        <script src="~/Scripts/jquery.flexslider.js"></script>
+        <link rel="stylesheet" href="~/Content/HomeCss/flexslider.css" type="text/css" media="screen" />
+
+        <script>
+            // Can also be used with $(document).ready()
+            $(window).load(function () {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    controlNav: "thumbnails"
+                });
+            });
+        </script>
+    </div>
+
+    <div class="col-sm-7">
+        <div class="product-information">
+            <!--/product-information-->
+            <img id="newold" src="~/Images/ImageIndex/product-details/new.jpg" class="newarrival" alt="" />
+            <h2>@Model.tensp</h2>
+            <p>@ViewBag.q.tenchatlieu</p>
+            <img src="~/Images/ImageIndex/product-details/rating.png" />
+            <br />
+            <span>
+                <span>Giá: @string.Format("{0:0.000}", @Model.dongia/1000) VNĐ</span>
+                <br />
+                <label style="font-size: 20px;">Size:</label><br />
+                <label style="padding-left:50px; font-size: 16px;">M - @Html.Action("TimSLSPTheoIDVaSize", "Product", new { id = Model.id, size = "M" })</label><br />
+                <label style="padding-left:50px; font-size: 16px;">L - @Html.Action("TimSLSPTheoIDVaSize", "Product", new { id = Model.id, size = "L" })</label><br />
+                <label style="padding-left:50px; font-size: 16px;">XL - @Html.Action("TimSLSPTheoIDVaSize", "Product", new { id = Model.id, size = "XL" })</label>
+                <br /><br />
+                @using (Html.BeginForm("AddShoppingCart", "ShoppingCart", new { @MaSP = Model.id, @Url = Request.Url.ToString() }))
+                {
+                <button type="submit" class="btn btn-fefault cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    Thêm vào giỏ hàng
+                </button>
+                }
+            </span>
+
+            <p><b>Loại:</b> @ViewBag.type.tenloai</p>
+            <p><b>Thương hiệu:</b> @ViewBag.brand.ten</p>
+            <a href=""><img src="~/Images/ImageIndex/product-details/share.png" class="share img-responsive" alt="" /></a>
+        </div><!--/product-information-->
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    if ('@Model.trangthai' == "new") {
+        $('#newold').css("display", "block");
+       
+    }
+    else
+        $('#newold').css("display", "none");
+</script>
